@@ -1,0 +1,228 @@
+body {
+    background-color: rgb(71, 70, 70);
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#background {
+    width: 100%;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    filter: grayscale(100%) blur(1px);      
+}
+
+.center {
+    text-align: center;
+}
+
+.text-shadow {
+    text-shadow: -2px 0 black, 0 2px black, 2px 0 black, 0 -2px black;
+}
+
+#container {
+    max-width: 900px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 50px;
+}
+
+legend {
+    width: auto;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Navigation bar CSS*/
+#navigation-bar-reg {
+    background-color: rgb(192, 191, 191);
+    overflow: hidden;
+    border-bottom: 5px solid red;
+  }
+  
+#navigation-bar-reg a {
+    text-decoration: none;
+    float: left;
+    color: white;
+    padding: 14px 18px;
+}
+  
+#navigation-bar-reg a:hover {
+    background-color: red;
+}
+
+#navigation-bar-log {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    display: flex;
+    width: 100%;
+    justify-content: center;
+    margin: auto;
+    background-color: red;
+    overflow: hidden;
+    border-bottom: 5px solid red;
+    border-left: 5px solid red;
+    border-right: 5px solid red;
+}
+  
+#navigation-bar-log a {
+    text-decoration: none;
+    float: left;
+    color: white;
+    padding: 14px 18px;
+}
+  
+#navigation-bar-log a:hover {
+    border-bottom: 2px solid rgb(192, 191, 191);
+}
+
+/*Form CSS*/
+
+#form-reg {
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#form-reg label{
+    display: inline-block;
+}
+
+fieldset {
+    background-color: red;
+    border: solid rgb(172, 171, 171);
+}
+
+#form-reg input{
+    display: block;
+    width: 160px;
+    box-sizing: border-box;
+    border: 2px solid rgb(172, 171, 171);
+    border-radius: 4px;
+    float: right;
+}
+
+#form-log {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#form-log input{
+    display: block;
+    box-sizing: border-box;
+    border: 2px solid rgb(172, 171, 171);
+    padding: 10px;
+    border-radius: 4px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+select {
+    width: 60%;
+    padding: 5px;
+    margin: 5px;
+    border: none;
+    border-radius: 4px;
+    background:rgb(172, 171, 171);
+}
+
+option {
+    background: rgb(172, 171, 171);
+    color: white;
+}
+
+.line {
+    width: 100%;
+    border: 0.7px solid rgb(172, 171, 171);
+}
+
+#log {
+    text-decoration: none;
+    color: rgb(172, 171, 171);
+}
+
+#log:hover {
+    color: rgb(192, 191, 191);
+}
+
+#to-center {
+    margin: auto;
+    background-color: red;
+    width: 40%;
+    padding: 10px;
+    border: 2px solid rgb(172, 171, 171);
+}
+
+#button1 {
+    background-color: rgb(172, 171, 171);
+    color: white;
+    padding: 10px;
+}
+
+#button1:hover {
+    background-color: rgb(192, 191, 191);
+    border-right: 3px solid black;
+    border-bottom: 3px solid black;
+}
+
+#img {
+    width: 500px;
+    border: solid rgb(172, 171, 171);
+    filter: grayscale(100%) blur(1px);
+}
+
+#reg {
+    display: block;
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+}
+
+#reg:hover {
+    color: rgb(192, 191, 191);
+}
+
+#to-center {
+    margin: auto;
+    background-color: red;
+    width: 41%;
+    padding: 10px;
+    border: 2px solid rgb(172, 171, 171);
+}
+
+table {
+    font-size: 20px;
+    font-family: Arial, Helvetica, sans-serif;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    margin-left: auto;
+    margin-right: auto;
+    border-spacing: 0;
+    width: 60%;
+    border: 3px solid red;
+}
+
+th {
+    padding-top: 10px;
+    padding-bottom: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+tr:nth-child(odd) { 
+    background-color: rgb(192, 191, 191); 
+}
+
+tr:nth-child(even) { 
+    background-color: rgb(172, 171, 171); 
+  }

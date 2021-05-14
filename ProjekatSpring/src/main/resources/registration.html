@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>New Member Registration</title>
+        <link rel="stylesheet" href="styles.css">
+    </head>
+    <body style="color: white;">
+        <img src="Pictures/pic1.jpg" id="img" style="float:left">
+        <img src="Pictures/pic2.jpg" id="img" style="float:right">
+        
+        <div class="center" id="container">
+        
+            <div id="navigation-bar-reg" class="center">
+                <a href="#">Home</a>
+                <a href="#">Locations</a>
+                <a href="#">Contact</a>
+                <a href="#">Schedule</a>
+                <a href="#">Our prices</a>
+            </div>
+            <div id="form-reg" class="text-shadow center">
+                <form method="POST">
+                    <fieldset>
+                        <legend class = "text-shadow center"><h1 style="color:grey">Registration</h1></legend>
+                        <label for="UserameField">Username: </label>
+                        <input class="center" id="field" type="text"
+                            maxlength="35"
+                            required = "required"> <br> <br>
+
+
+                        <label for="PassField">Password: </label>
+                        <input class="center" id="field" type="password"
+                            maxlength="35"
+                            required = "required"> <br> <br>
+
+
+                        <label for="NameField">First Name: </label>
+                        <input class="center" id="field" type="text"
+                            maxlength="35"
+                            required = "required"> <br> <br>
+
+
+                        <label for="SurnameField">Last Name: </label>
+                        <input class="center" id="field" type="text"
+                            maxlength="35"
+                            required = "required"> <br> <br>
+
+
+                        <label for="EmailField"> Email: </label>
+                        <input class="center" id="field" type="email" required="required">  <br> <br> 
+                        
+                        
+                        <label for="DateField"> Date of birth: </label>
+                        <input class="cetner" id="field" type="date" required="required">  <br> <br> 
+
+                        <label for="ContactField"> Number: </label>
+                        <input class="center" type="tel" id="field" placeholder="+381 66 11 11 111" required="required"> <br> <br> <hr class="line">
+
+
+                        <div class="selection">
+                            <label for = "role">Pick your role:</label>
+                            <select name = "role" id = "role">
+                                <option value="Member"> Member </option>
+                                <option value="Trainer"> Trainer </option>
+                            </select>   
+                        </div> 
+                        
+                    </fieldset> 
+                </div> <br>
+
+                <div id="to-center">
+                    <p class="center">Already have an account? <a href="login.html" id = "log" target="_blank">Login.</a></p> 
+
+                    <div class="center">
+                        <input name = "cb" type="checkbox" required="required">
+                        <label for = "cb">I agree to the center’s <a href=# id = "log">training policy.</a></label>
+                    </div> <br>
+                    
+                    <div class="center">
+                        <button id="button1" type="submit">Submit</button>
+                        <button id="button1" type="reset">Reset</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
