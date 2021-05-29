@@ -7,7 +7,6 @@
     <script src="js/termin.js"></script>
 </head>
 <body style="color: white;">
-    <img src="Pictures/background.jpg" id="background">
 
     <div class="center" id="container">
         <div id="navigation-bar-log" class="center">
@@ -18,24 +17,30 @@
             <span><a href="#">Our prices</a></span>
         </div>
         
+        <div id="form-search" style="width: 600px; margin-left: auto; margin-right: auto;">
+            <form method="POST" name = "form-search">
+                <fieldset>
+                    <legend class ="center text-shadow"><p style="color: grey;">Pretraga po kriterijumima</p></legend>
+                    <label for = "kriterijum">Unesite kriterijume:</label> <br>
+                    <label for="trajanje">Trajanje: </label>
+                    <input type="text" name = "trajanje" placeholder="Maksimalna dužina trajanja" style="width: 200px; margin: 5px;"> <br>
+                    <label for="cena" style="margin-right: 17px;">Cena: </label>
+                    <input type="text" name = "cena" placeholder="Maksimalna cena termina" style="width: 200px; margin: 5px;"> <br>
+                    <input class="button1" id="search" type="submit" value="Pretraga">
+                </fieldset>
+            </form>
+        </div>
+
         <table id = "termini">
-            <thead class="text-shadow">
                 <tr>
                     <th colspan="4">Raspored termina</th>
                 </tr>
                 <tr>
-                    <th colspan="4"><a href="termin-search.html" target="_self" id="reg">Pretraga po pojedinačnim kriterijumima</th>
+                    <th style="cursor: pointer;" onclick="sortTable(0)">Pocetak termina</th>
+                    <th style="cursor: pointer;" onclick="sortTable(1)">Kraj termina</th>
+                    <th style="cursor: pointer;" onclick="sortTableByNumbers(2)">Trajanje termina</th>
+                    <th style="cursor: pointer;" onclick="sortTableByNumbers(3)">Cena termina</th>
                 </tr>
-                <tr>
-                    <th>Pocetak termina</th>
-                    <th>Kraj termina</th>
-                    <th>Trajanje termina</th>
-                    <th>Cena termina</th>
-                </tr>
-            </thead>
-            <tbody>
-                
-            </tbody>
         </table>
     </div>
 </body>
