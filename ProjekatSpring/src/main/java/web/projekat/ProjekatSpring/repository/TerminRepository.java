@@ -5,3 +5,4 @@ import web.projekat.ProjekatSpring.entity.Termin;
 
 public interface TerminRepository extends JpaRepository<Termin, Long>{
 }
+

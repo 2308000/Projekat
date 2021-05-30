@@ -5,19 +5,27 @@
         <title>New Member Registration</title>
         <link rel="stylesheet" href="styles.css">
         <script src="js/jquery-3.6.0.min.js"></script>
-        <script src="js/registration.js"></script>
+        <script src="js/trainer-reg.js"></script>
    </head>
     <body style="color: white;">
         <img src="Pictures/pic1.jpg" id="img" style="float:left">
         <img src="Pictures/pic2.jpg" id="img" style="float:right">
         
         <div class="center" id="container">
+        
+            <div id="navigation-bar-reg" class="center">
+                <a href="index.html">Home</a>
+                <a href="login.html">Login</a>
+                <a href="registration.html">Sign-up</a>
+                <a href="termin.html">Schedule</a>
+                <a href="#">Our prices</a>
+            </div>
             <div id="form-reg" class="text-shadow center">
-                <form name = "registracija" method="POST">
+                <form name = "tregistracija" method="POST">
                     <fieldset>
                         <legend class = "text-shadow center"><h1 style="color:grey">Registration</h1></legend>
 
-                        <p class="center">Want to register as a trainer? Click <a href="trainerRegistration.html" id = "log" target="_self">here.</a></p>
+                        <p class="center">Want to register as a member? Click <a href="registration.html" id = "log" target="_self">here.</a></p>
 
                         <label for="UsernameField">Username: </label>
                         <input class="center" id="UsernameField" name = "UsernameField" type="text"

@@ -23,7 +23,7 @@ public class Clan implements Serializable {
     @Column(nullable = false)
     private String password;
     
-    @Column(nullable = false)
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(name = "datum_rodjenja")
@@ -55,6 +55,22 @@ public class Clan implements Serializable {
 	public Clan() {
 		
 	}
+	
+	
+	public Clan(String korisnickoIme, String ime, String prezime, String password, String email,
+			Date datumRodjenja, String telefon, String uloga, boolean active) {
+		super();
+		this.korisnickoIme = korisnickoIme;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.password = password;
+		this.email = email;
+		this.datumRodjenja = datumRodjenja;
+		this.telefon = telefon;
+		this.uloga = uloga;
+		this.active = active;
+	}
+
 
 	public Long getId() {
 		return id;
@@ -120,7 +136,7 @@ public class Clan implements Serializable {
 		this.telefon = telefon;
 	}
 
-	public Boolean getActive() {
+	public Boolean isActive() {
 		return active;
 	}
 

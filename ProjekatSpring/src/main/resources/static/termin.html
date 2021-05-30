@@ -22,25 +22,47 @@
                 <fieldset>
                     <legend class ="center text-shadow"><p style="color: grey;">Pretraga po kriterijumima</p></legend>
                     <label for = "kriterijum">Unesite kriterijume:</label> <br>
-                    <label for="trajanje">Trajanje: </label>
-                    <input type="text" name = "trajanje" placeholder="Maksimalna dužina trajanja" style="width: 200px; margin: 5px;"> <br>
+                    <label for="datum" style="margin-right: 7px;">Datum: </label>
+                    <input type="date" name = "datum" style="width: 200px; margin: 5px;"> <br>
                     <label for="cena" style="margin-right: 17px;">Cena: </label>
                     <input type="text" name = "cena" placeholder="Maksimalna cena termina" style="width: 200px; margin: 5px;"> <br>
+                    <select name = "naziv">
+                        <option value = "sve">Svi nazivi</option>
+                        <option value = "STRENGTH">Snaga</option>
+                        <option value = "FUNCTIONAL">Funkcionalnost</option>
+                        <option value = "CARDIO">Izdrzljivost</option>
+                    </select>
+                    <select name = "opis">
+                        <option value = "sve">Svi opisi</option>
+                        <option value = "WEIGHT LIFTING">Dizanje tegova</option>
+                        <option value = "CROSSFIT">Crossfit</option>
+                        <option value = "CARDIO ROOM">Trcanje</option>
+                    </select>
+                    <select name = "tip">
+                        <option value = "sve">Svi tipovi</option>
+                        <option value = "FOR MEN AND WOMEN">Teško</option>
+                        <option value = "FOR BOYS AND GIRLS">Srednje</option>
+                        <option value = "FOR KIDS AND CATS">Lako</option>
+                    </select> <br>
                     <input class="button1" id="search" type="submit" value="Pretraga">
                 </fieldset>
             </form>
         </div>
-
-        <table id = "termini">
-                <tr>
-                    <th colspan="4">Raspored termina</th>
-                </tr>
-                <tr>
-                    <th style="cursor: pointer;" onclick="sortTable(0)">Pocetak termina</th>
-                    <th style="cursor: pointer;" onclick="sortTable(1)">Kraj termina</th>
-                    <th style="cursor: pointer;" onclick="sortTableByNumbers(2)">Trajanje termina</th>
-                    <th style="cursor: pointer;" onclick="sortTableByNumbers(3)">Cena termina</th>
-                </tr>
-        </table>
     </div>
+    
+    <table id = "termini">
+        <tr>
+            <th colspan = "3">Treninzi</th>
+            <th colspan="4">Raspored termina</th>
+        </tr>
+        <tr>
+            <th style="cursor: pointer;" onclick="sortTable(0)">Naziv treninga</th>
+            <th style="cursor: pointer;" onclick="sortTable(1)">Opis treninga</th>
+            <th style="cursor: pointer;" onclick="sortTable(2)">Tip treninga</th>
+            <th style="cursor: pointer;" onclick="sortTable(3)">Pocetak termina</th>
+            <th style="cursor: pointer;" onclick="sortTable(4)">Kraj termina</th>
+            <th style="cursor: pointer;" onclick="sortTableByNumbers(5)">Trajanje termina</th>
+            <th style="cursor: pointer;" onclick="sortTableByNumbers(6)">Cena termina</th>
+        </tr>
+    </table>
 </body>

@@ -2,7 +2,7 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
     // ajax poziv
     $.ajax({
         type: "GET",                                              
-        url: "http://localhost:8080/api/termini",                 
+        url: "http://localhost:8080/api/raspored",                 
         dataType: "json",                                          
         success: function (res) {                                   
             
@@ -11,13 +11,17 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
                 let temp1 = res[i].pocetakTermina;
                 let temp2 = res[i].krajTermina;
                 temp1 = temp1.substring(0,10) + ' ' + temp1.substring(11, 16);
-                temp2 = temp2.substring(0,10) + ' ' + temp2.substring(11, 16);                  
+                temp2 = temp2.substring(0,10) + ' ' + temp2.substring(11, 16);
+                row += "<td class=\"newCell center\">" + res[i].nazivTreninga + "</td>";
+                row += "<td class=\"newCell center\">" + res[i].opisTreninga + "</td>";
+                row += "<td class=\"newCell center\">" + res[i].tipTreninga + "</td>";                  
                 row += "<td class=\"newCell center\">" + temp1 + "</td>";         
                 row += "<td class=\"newCell center\">" + temp2 + "</td>";
                 row += "<td class=\"newCell center\">" + res[i].trajanjeTermina + "</td>";
                 row += "<td class=\"newCell center\">" + res[i].cenaTermina + "</td>";                                 
                 row += "</tr>";                                     
-                $('#termini').append(row);                        
+                $('#termini').append(row);  
+                //console.log(res);                      
             }
         },
         error: function (res) {                                     
@@ -32,25 +36,31 @@ $(document).on("submit", "form", function (event) {
         let toHide = $(".newCell");
         toHide.hide();
         let sve = false;
+        let nazivTreninga  = document.forms['form-search'].naziv.value;
+        let opisTreninga  = document.forms['form-search'].opis.value;
+        let tipTreninga  = document.forms['form-search'].tip.value;
         let cena =  document.forms['form-search'].cena.value;
-        let trajanje = document.forms['form-search'].trajanje.value;
+        let datum = document.forms['form-search'].datum.value;
 
         if(isNaN(cena) || cena === "") {
             cena = 99999;
         }
-        if(isNaN(trajanje) || trajanje === "") {
-            trajanje = 99999;
+        if(datum === "") {
+            datum = "2030-01-01";
         }
 
         let kriterijumi = {
             sve,
+            nazivTreninga, 
+            opisTreninga,
+            tipTreninga,
             cena,
-            trajanje,
+            datum,
         }
 
         $.ajax({
             type: "POST",                                                
-            url: "http://localhost:8080/api/termini/pretragaPoKriterijumu",                 
+            url: "http://localhost:8080/api/raspored/pretragaPoKriterijumu",                 
             dataType: "json",            
             contentType: "application/json",              
             data: JSON.stringify(kriterijumi),                                           
@@ -62,13 +72,17 @@ $(document).on("submit", "form", function (event) {
                     let temp1 = res[i].pocetakTermina;
                     let temp2 = res[i].krajTermina;
                     temp1 = temp1.substring(0,10) + ' ' + temp1.substring(11, 16);
-                    temp2 = temp2.substring(0,10) + ' ' + temp2.substring(11, 16);                  
+                    temp2 = temp2.substring(0,10) + ' ' + temp2.substring(11, 16);
+                    row += "<td class=\"newCell center\">" + res[i].nazivTreninga + "</td>";
+                    row += "<td class=\"newCell center\">" + res[i].opisTreninga + "</td>";
+                    row += "<td class=\"newCell center\">" + res[i].tipTreninga + "</td>";                   
                     row += "<td class=\"newCell center\">" + temp1 + "</td>";         
                     row += "<td class=\"newCell center\">" + temp2 + "</td>";
                     row += "<td class=\"newCell center\">" + res[i].trajanjeTermina + "</td>";
                     row += "<td class=\"newCell center\">" + res[i].cenaTermina + "</td>";           
                     row += "</tr>";                                     
-                    $('#termini').append(row);                        
+                    $('#termini').append(row);
+                    console.log(res);                        
                 }
             },
             error: function (res) {                                 

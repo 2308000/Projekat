@@ -51,6 +51,23 @@ public class Trener implements Serializable {
 		prosecnaOcena = 0.0;
 	}
 
+	
+	public Trener(String korisnickoIme, String ime, String prezime, String password, String email, Date datumRodjenja,
+			String telefon, String uloga, boolean active) {
+		super();
+		this.korisnickoIme = korisnickoIme;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.password = password;
+		this.email = email;
+		this.datumRodjenja = datumRodjenja;
+		this.telefon = telefon;
+		this.uloga = uloga;
+		this.active = active;
+		this.prosecnaOcena = 0.0;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

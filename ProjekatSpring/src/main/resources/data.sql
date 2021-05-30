@@ -12,6 +12,10 @@ INSERT INTO CLAN(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, 
 
 INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, prosecna_ocena, fitness_centar_id) VALUES ('CarolynJ', 'Jasminko', 'Milosevic', 'pt', 'jasminkomilo@gmail.com', '1999-05-22', '066520123', 'trener', '1', '9.0', 1);
 INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, prosecna_ocena, fitness_centar_id) VALUES ('Woooox', 'Nikolina', 'Vukic', 'pt', 'nikovu@gmail.com', '1997-05-17', '066314215', 'trener', '1', '8.0', 1);
+INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, prosecna_ocena, fitness_centar_id) VALUES ('CarolynJO', 'Jasminako', 'Milosevic', 'pt', 'jasminkomilo1@gmail.com', '1999-05-22', '066520123', 'trener', '0', '0.0', 1);
+INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, prosecna_ocena, fitness_centar_id) VALUES ('CarolynJON', 'Jasminbko', 'Milosevic', 'pt', 'jasminkomilo2@gmail.com', '1999-05-22', '066520123', 'trener', '0', '0.0', 1);
+INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, prosecna_ocena, fitness_centar_id) VALUES ('Voooox', 'Nikolija', 'Vukic', 'pt', 'nikovu1@gmail.com', '1997-05-17', '0663142115', 'trener', '0', '0.0', 1);
+INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, prosecna_ocena, fitness_centar_id) VALUES ('Woo000oox', 'Nikolina', 'Vukic', 'pt', 'nikovu2@gmail.com', '1997-05-17', '0663142115', 'trener', '0', '0.0', 1);
 
 INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id) VALUES ('50', 'Broj1', 1);
 INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id) VALUES ('50', 'Broj2', 1);
@@ -23,12 +27,12 @@ INSERT INTO TRENING(naziv_treninga, opis, tip) VALUES ('CARDIO', 'CARDIO ROOM', 
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-15 10:00:00', '2021-05-15 11:00:00', '60', '300', 1, 1, 1); 
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-16 14:00:00', '2021-05-16 15:00:00', '60', '500', 2, 1, 1);
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-17 19:00:00', '2021-05-17 20:00:00', '60', '400', 3, 1, 1);
-INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-15 10:00:00', '2021-05-15 11:00:00', '60', '300', 1, 2, 1); 
-INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-16 14:00:00', '2021-05-16 15:00:00', '60', '500', 2, 2, 1);
-INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-17 19:00:00', '2021-05-17 20:00:00', '60', '400', 3, 2, 2);
-INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-15 10:00:00', '2021-05-15 11:00:00', '60', '300', 1, 2, 2); 
-INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-16 14:00:00', '2021-05-16 15:00:00', '60', '500', 2, 1, 2);
-INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-17 19:00:00', '2021-05-17 20:00:00', '60', '400', 3, 1, 2);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-15 12:00:00', '2021-05-15 13:00:00', '60', '1000', 1, 2, 1); 
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-16 15:00:00', '2021-05-16 16:30:00', '90', '500', 2, 2, 1);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-17 19:00:00', '2021-05-17 20:30:00', '90', '1100', 3, 2, 2);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-15 11:00:00', '2021-05-15 12:30:00', '90', '300', 1, 2, 2); 
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-16 13:00:00', '2021-05-16 14:30:00', '90', '500', 2, 1, 2);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-17 18:00:00', '2021-05-17 19:30:00', '90', '400', 3, 1, 2);
 
 INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('8.0', 1, 1);
 INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('9.0', 2, 2);

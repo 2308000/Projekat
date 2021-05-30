@@ -14,7 +14,7 @@ import org.springframework.ui.Model;
 import java.util.*;
 
 @RestController
-@RequestMapping(value = "/api/termini")
+@RequestMapping(value = "/api/raspored")
 public class TerminController {
 
 	 private final TerminService terminService;
@@ -33,7 +33,8 @@ public class TerminController {
 
 	     for (Termin termin : terminList) {
 	    	 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
-	    		termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina());
+	    		termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina(), termin.getTrening().getNazivTreninga(),
+	    		termin.getTrening().getOpis(), termin.getTrening().getTip());
 	    	 	terminDTOS.add(terminDTO);
 	     }
 
@@ -44,17 +45,10 @@ public class TerminController {
              produces = MediaType.APPLICATION_JSON_VALUE,
              value = "/pretragaPoKriterijumu")
 	 public ResponseEntity<List<TerminDTO>> getTerminiByCriteria(@RequestBody SearchDTO getDTO) throws Exception {
-	     SearchDTO searchDTO = new SearchDTO(getDTO.isSve(), getDTO.getTrajanje(), getDTO.getCena());
-	     List<Termin> terminiList = this.terminService.findAllByCriteria(searchDTO);
-	
-	     List<TerminDTO> terminDTOS = new ArrayList<>();
+	     SearchDTO searchDTO = new SearchDTO(getDTO.isSve(), getDTO.getDatum(), getDTO.getCena(), getDTO.getNazivTreninga(), 
+	    		 getDTO.getOpisTreninga(), getDTO.getTipTreninga());
+	     List<TerminDTO> terminiList = this.terminService.findAllByCriteria(searchDTO);
 	     
-	     for (Termin termin : terminiList) {
-	         TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
-	                 termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina());
-	         terminDTOS.add(terminDTO);
-	     }
-	     
-	     return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
+	     return new ResponseEntity<>(terminiList, HttpStatus.OK);
 	 }
 }
