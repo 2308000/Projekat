@@ -38,6 +38,9 @@ public class Trener implements Serializable {
 	@Column
 	private Boolean active;
 	
+	@Column
+	private Boolean obrisan;
+	
 	@Column(name = "prosecna_ocena")
 	private Double prosecnaOcena;
 	
@@ -53,7 +56,7 @@ public class Trener implements Serializable {
 
 	
 	public Trener(String korisnickoIme, String ime, String prezime, String password, String email, Date datumRodjenja,
-			String telefon, String uloga, boolean active) {
+			String telefon, String uloga, boolean active, boolean obrisan) {
 		super();
 		this.korisnickoIme = korisnickoIme;
 		this.ime = ime;
@@ -64,7 +67,18 @@ public class Trener implements Serializable {
 		this.telefon = telefon;
 		this.uloga = uloga;
 		this.active = active;
+		this.obrisan = obrisan;
 		this.prosecnaOcena = 0.0;
+	}
+
+
+	public Boolean getObrisan() {
+		return obrisan;
+	}
+
+
+	public void setObrisan(Boolean obrisan) {
+		this.obrisan = obrisan;
 	}
 
 

@@ -35,7 +35,7 @@ public class VerificationController {
         for (Trener trener : listaTrenera) {
             // Kreiramo EmployeeDTO za svakog zaposlenog, kojeg je vratila metoda findAll()
             // i ubacujemo ga u listu employeeDTOS
-        	if(!trener.getActive()) {       		
+        	if(!trener.getActive() && !trener.getObrisan()) {       		
 	        	RegistrationDTO registrationDTO = new RegistrationDTO(trener.getId(), trener.getKorisnickoIme(), trener.getIme(), trener.getPrezime(), 
 	        			trener.getPassword(), trener.getEmail(), trener.getDatumRodjenja(), 
 	        			trener.getTelefon(), trener.getUloga(), trener.getActive());
@@ -47,7 +47,7 @@ public class VerificationController {
         return new ResponseEntity<>(registrationDTOS, HttpStatus.OK);
     }
 	
-	@PostMapping(value = "prihvacen/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
+	@PutMapping(value = "prihvacen/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegistrationDTO> updateTrener(@PathVariable Long id) throws Exception {
       
@@ -64,7 +64,7 @@ public class VerificationController {
         return new ResponseEntity<>(updatedRegDTO, HttpStatus.OK);
     }
 	
-	@PostMapping(value = "odbijen/{id}")
+	@DeleteMapping(value = "odbijen/{id}")
     public ResponseEntity<Void> deleteTrener(@PathVariable Long id) {
         // Pozivanjem metode servisa brišemo zaposlenog po ID-ju
         this.registrationService.delete(id);

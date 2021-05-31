@@ -3,10 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <title>User Login</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/login.js"></script>
 </head>
 <body>
-    <img src="Pictures/background.jpg" id="background">
+    <img src="../Pictures/background.jpg" id="background">
     
     <div class="center" id="container">
         <div id="form-log">
@@ -14,11 +16,11 @@
                 <fieldset>
                     <legend class ="center text-shadow"><h1 style="color: grey;">LOGIN</h1></legend>
 
-                    <input class ="center" id="field" type="text"
+                    <input class ="center" id="UsernameField" name="UsernameField" type="text"
                     maxlength="35" placeholder="Username"
                     required = "required"> <br> <br>
 
-                    <input class ="center" id="field" type="password"
+                    <input class ="center" id="PassField" type="password" name="PassField"
                     maxlength="35" placeholder="Password"
                     required = "required"> <br>
                     

@@ -1,3 +1,16 @@
+$(document).ready(function () { 
+    var uloga = localStorage.getItem("role");
+    if(uloga === "admin") {
+        window.location.href = "admin.html";
+    }
+    if(uloga === "trener") {
+        window.location.href = "trener.html";
+    }
+    if(uloga === "clan") {
+        window.location.href = "clan.html";
+    }
+});
+
 $(document).on("submit", "form", function (event) {           // kada je submit-ovana forma za kreiranje novog zaposlenog
     event.preventDefault();                                   // sprecavamo automatsko slanje zahteva da bismo pokupili podatke iz forme
 

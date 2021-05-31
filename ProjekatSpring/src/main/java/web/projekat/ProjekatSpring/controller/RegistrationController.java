@@ -30,7 +30,7 @@ public class RegistrationController {
 	    public ResponseEntity<RegistrationDTO> createTrainer(@RequestBody RegistrationDTO registrationDTO) throws Exception {
 	        Trener trener = new Trener(registrationDTO.getKorisnickoIme(), registrationDTO.getIme(), registrationDTO.getPrezime(), 
 	        		registrationDTO.getPassword(), registrationDTO.getEmail(), registrationDTO.getDatumRodjenja(), 
-	        		registrationDTO.getTelefon(), registrationDTO.getUloga(), registrationDTO.isActive());
+	        		registrationDTO.getTelefon(), registrationDTO.getUloga(), registrationDTO.isActive(), false);
 	        /*Trener(String korisnickoIme, String ime, String prezime, String password, String email,
 			Date datumRodjenja, String telefon, String uloga, boolean active)*/
 	        Trener noviTrener = registrationService.create(trener);
