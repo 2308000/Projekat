@@ -23,12 +23,22 @@ public class FitnessCentar implements Serializable {
     @Column(name = "email_centra", nullable = false, unique = true)
     private String emailCentra;
     
+    @Column
+    private boolean obrisan;
+    
     @OneToMany(mappedBy = "fitnessCentar", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Sala> sale = new HashSet<>();
     
     @OneToMany(mappedBy = "fitnessCentar", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Trener> treneri = new HashSet<>();
-    
+      
+	public boolean isObrisan() {
+		return obrisan;
+	}
+
+	public void setObrisan(boolean obrisan) {
+		this.obrisan = obrisan;
+	}
 
 	public FitnessCentar() {
 		super();
@@ -88,5 +98,15 @@ public class FitnessCentar implements Serializable {
 
 	public void setTreneri(Set<Trener> treneri) {
 		this.treneri = treneri;
+	}
+
+	public FitnessCentar(String nazivCentra, String adresa, String brojTelefonaCentra, String emailCentra,
+			boolean obrisan) {
+		super();
+		this.nazivCentra = nazivCentra;
+		this.adresa = adresa;
+		this.brojTelefonaCentra = brojTelefonaCentra;
+		this.emailCentra = emailCentra;
+		this.obrisan = obrisan;
 	}
 }

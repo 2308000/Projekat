@@ -2,7 +2,7 @@ $(document).ready(function () {
     var uloga = localStorage.getItem("role");
     if(uloga === "trener") {
         //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
-        window.location.href = "trener.html";
+        window.location.href = "trener.html"
     }
     if(uloga === "clan") {
         //console.log("Morate se izlogovati da biste se ponovo ulogovali!");

@@ -51,6 +51,10 @@ public class LoginDTO {
 		this.password = password;
 		this.uloga = uloga;
 	}
+
+	public LoginDTO() {
+		super();
+	}
 	
 	
 }

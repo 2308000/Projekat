@@ -2,7 +2,7 @@ INSERT INTO KORISNIK (korisnicko_ime, ime, prezime, password, email, datum_rodje
 INSERT INTO KORISNIK (korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active) VALUES ('CarolynJones', 'Jasmina', 'Milosevic', 'admin', 'jasmina.milosevic13@gmail.com', '1996-09-12', '0665115133', 'korisnik', '1');
 INSERT INTO KORISNIK (korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active) VALUES ('Insanyus', 'Andrej', 'Cokic', 'admin', 'andrejcokic12@gmail.com', '1996-08-23', '0665769420', 'korisnik', '1');
 
-INSERT INTO FITNESS_CENTAR(naziv_centra, adresa, broj_telefona_centra, email_centra) VALUES ('EFitness Centar', 'Novosadskog Sajma 4', ' 0213004771', 'office@efitnesscentar.rs');
+INSERT INTO FITNESS_CENTAR(naziv_centra, adresa, broj_telefona_centra, email_centra, obrisan) VALUES ('EFitness Centar', 'Novosadskog Sajma 4', ' 0213004771', 'office@efitnesscentar.rs', '0');
 
 INSERT INTO ADMINISTRATOR(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active) VALUES ('WooxGG', 'Nikola', 'Vukic', 'admin', 'nikolavukic33@gmail.com', '2000-08-23', '0655762600', 'administrator', '1');
 
