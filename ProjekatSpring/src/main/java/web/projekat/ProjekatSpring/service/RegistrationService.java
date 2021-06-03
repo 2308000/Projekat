@@ -8,7 +8,8 @@ import web.projekat.ProjekatSpring.entity.Clan;
 import web.projekat.ProjekatSpring.repository.ClanRepository;
 import web.projekat.ProjekatSpring.entity.Trener;
 import web.projekat.ProjekatSpring.repository.TrenerRepository;
-
+import web.projekat.ProjekatSpring.entity.Administrator;
+import web.projekat.ProjekatSpring.repository.AdministratorRepository;
 @Service
 public class RegistrationService {
 	
@@ -18,9 +19,22 @@ public class RegistrationService {
 	@Autowired
 	private TrenerRepository trenerRepository;
 	
+	@Autowired
+	private AdministratorRepository administratorRepository;
+	
 	public List<Trener> findAllTrainers() {
         List<Trener> treneri = this.trenerRepository.findAll();
         return treneri;
+    }
+	
+	public List<Administrator> findAllAdmins() {
+        List<Administrator> administratori = this.administratorRepository.findAll();
+        return administratori;
+    }
+	
+	public List<Clan> findAllMembers() {
+        List<Clan> clanovi = this.clanRepository.findAll();
+        return clanovi;
     }
 	
 	public Clan save(Clan clan) {

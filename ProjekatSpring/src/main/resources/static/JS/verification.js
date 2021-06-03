@@ -1,9 +1,29 @@
 $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Object Model) učitan da bi JS mogao sa njim da manipuliše.
     // ajax poziv
+    
+    var uloga = localStorage.getItem("role");
+    if(uloga === "trener") {
+        //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
+        window.location.href = "trener.html"
+    }
+    if(uloga === "clan") {
+        //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
+        window.location.href = "clan.html";
+    }
+    if(uloga === null) {
+        window.location.href = "index.html";
+    }
+
+    var zastita = {
+        uloga
+    }
+
     $.ajax({
-        type: "GET",                                              
+        type: "POST",                                              
         url: "http://localhost:8080/api/verifikacija/inactive",                 
-        dataType: "json",                                          
+        dataType: "json",
+        contentType: "application/json",                            // tip podataka koje šaljemo
+        data: JSON.stringify(zastita),                                          
         success: function (res) {
             for (i = 0; i < res.length; i++) {                      
                 let row = "<tr id = 'tempRed" + res[i].id +"'>";

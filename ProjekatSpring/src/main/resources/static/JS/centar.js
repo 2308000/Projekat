@@ -19,6 +19,7 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
     var adresa = $("#AdressField").val();
     var brojTelefonaCentra = $("#ContactField").val();
     var emailCentra = $("#EmailField").val();
+    var zastita = localStorage.getItem("role");
     if(isNaN(brojTelefonaCentra)) {
         alert("Contact must be a telephone number!");
         return false;
@@ -30,6 +31,7 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
         adresa,
         brojTelefonaCentra,
         emailCentra,
+        zastita
     }
     console.log(noviCentar);
     // ajax poziv
@@ -41,8 +43,23 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
         data: JSON.stringify(noviCentar),                          // u body-ju šaljemo novog zaposlenog (JSON.stringify() pretvara JavaScript objekat u JSON)
         success: function (res) {                                   // ova f-ja se izvršava posle uspešnog zahteva
             console.log(res);
-            alert("Centar " + noviCentar.nazivCentra + " je uspesno kreiran!");
-            window.location.href = "admin.html";
+            if(res.zastita == "admin") {
+                alert("Centar " + noviCentar.nazivCentra + " je uspesno kreiran!");
+                window.location.href = "admin.html";
+            } else if(res.zastita == "broj") {
+                alert("Broj vec postoji!");
+            } else if(res.zastita == "email") {
+                alert("Email adresa vec postoji!");
+            } else {
+                alert("Nemate privilegiju dodavanja centra!");
+                if(res.zastita == "clan") {
+                    window.location.href = "clan.html";
+                }
+                if(res.zastita == "trenre") {
+                    window.location.href = "trener.html";
+                }
+                window.location.href = "../index.html";
+            }
         },
         error: function () {                                        // ova f-ja se izvršava posle neuspešnog zahteva
             alert("Greška!");

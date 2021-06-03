@@ -56,8 +56,16 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
         data: JSON.stringify(noviKorisnik),                          // u body-ju šaljemo novog zaposlenog (JSON.stringify() pretvara JavaScript objekat u JSON)
         success: function (res) {                                   // ova f-ja se izvršava posle uspešnog zahteva
             console.log(res);
-            alert("Korisnik " + noviKorisnik.korisnickoIme + " je uspesno kreiran!");
-            window.location.href = "login.html";
+            if(res.uloga == "username") {
+                alert("Korisnicko ime vec postoji!");
+            } else if(res.uloga == "email") {
+                alert("Email adresa vec postoji!");
+            } else if(res.uloga == "broj") {
+                alert("Broj telefona vec postoji!");
+            } else { 
+                alert("Korisnik " + noviKorisnik.korisnickoIme + " je uspesno kreiran!");
+                window.location.href = "login.html";
+            }
         },
         error: function () {                                        // ova f-ja se izvršava posle neuspešnog zahteva
             alert("Greška!");

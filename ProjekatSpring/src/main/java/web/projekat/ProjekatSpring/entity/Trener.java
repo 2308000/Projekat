@@ -29,7 +29,7 @@ public class Trener implements Serializable {
 	@Column(name = "datum_rodjenja")
 	private Date datumRodjenja;
 
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String telefon;
 
 	@Column
@@ -47,7 +47,7 @@ public class Trener implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private FitnessCentar fitnessCentar;
     
-    @OneToMany(mappedBy = "trener", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "trener", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
     private Set<Termin> termini = new HashSet<>();
 
 	public Trener() {

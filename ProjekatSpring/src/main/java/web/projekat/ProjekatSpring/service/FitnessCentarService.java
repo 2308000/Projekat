@@ -16,10 +16,10 @@ public class FitnessCentarService {
 	@Autowired 
 	FitnessCentarRepository fitnessCentarRepository;
 	
-	/*public List<Trener> findAllTrainers() {
-        List<Trener> treneri = this.trenerRepository.findAll();
-        return treneri;
-    }*/
+	public List<FitnessCentar> findAllCenters() {
+        List<FitnessCentar> centri = this.fitnessCentarRepository.findAll();
+        return centri;
+    }
 	
 	public FitnessCentar save(FitnessCentar fitnessCentar) {
         return this.fitnessCentarRepository.save(fitnessCentar);

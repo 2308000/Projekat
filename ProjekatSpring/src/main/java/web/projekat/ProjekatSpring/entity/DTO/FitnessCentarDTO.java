@@ -7,9 +7,14 @@ public class FitnessCentarDTO {
     private String brojTelefonaCentra;
     private String emailCentra;
     private boolean obrisan;
+    private String zastita;
     
-    
-        
+	public String getZastita() {
+		return zastita;
+	}
+	public void setZastita(String zastita) {
+		this.zastita = zastita;
+	}
 	public boolean isObrisan() {
 		return obrisan;
 	}
@@ -47,13 +52,15 @@ public class FitnessCentarDTO {
 		this.emailCentra = emailCentra;
 	}
 	
-	public FitnessCentarDTO(String nazivCentra, String adresa, String brojTelefonaCentra, String emailCentra, boolean obrisan) {
+	public FitnessCentarDTO(Long id, String nazivCentra, String adresa, String brojTelefonaCentra, String emailCentra, boolean obrisan, String zastita) {
 		super();
+		this.id = id;
 		this.nazivCentra = nazivCentra;
 		this.adresa = adresa;
 		this.brojTelefonaCentra = brojTelefonaCentra;
 		this.emailCentra = emailCentra;
 		this.obrisan = obrisan;
+		this.zastita = zastita;
 	}
 	
 	public FitnessCentarDTO() {

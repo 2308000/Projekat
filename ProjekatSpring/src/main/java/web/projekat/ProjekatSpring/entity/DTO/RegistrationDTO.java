@@ -13,7 +13,7 @@ public class RegistrationDTO {
 	private String telefon;
 	private String uloga;
 	private boolean active; 
-	
+
 	public Long getId() {
 		return id;
 	}

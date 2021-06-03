@@ -11,7 +11,7 @@ public class Administrator implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name="korisnicko_ime")
+    @Column(name="korisnicko_ime", nullable = false, unique = true)
     private String korisnickoIme;
 
     @Column
@@ -23,13 +23,13 @@ public class Administrator implements Serializable {
     @Column
     private String password;
     
-    @Column
+    @Column(nullable = false, unique = true)
     private String email;
 
     @Column(name = "datum_rodjenja")
     private Date datumRodjenja;
 
-    @Column
+    @Column(nullable = false, unique = true)
     private String telefon;
 
     @Column

@@ -24,29 +24,36 @@ public class VerificationController {
 	    this.registrationService = registrationService;
     }
 	
-	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/inactive")
-    public ResponseEntity<List<RegistrationDTO>> getInactiveTrainers() {
+	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/inactive")
+    public ResponseEntity<List<RegistrationDTO>> getInactiveTrainers(@RequestBody RegistrationDTO registrationDTO) {
         // Pozivanjem metode servisa dobavljamo sve zaposlene
         List<Trener> listaTrenera = this.registrationService.findAllTrainers();
 
         // Kreiramo listu DTO objekata koju ćemo vratiti u odgovoru na zahtev
         List<RegistrationDTO> registrationDTOS = new ArrayList<>();
-
-        for (Trener trener : listaTrenera) {
-            // Kreiramo EmployeeDTO za svakog zaposlenog, kojeg je vratila metoda findAll()
-            // i ubacujemo ga u listu employeeDTOS
-        	if(!trener.getActive() && !trener.getObrisan()) {       		
-	        	RegistrationDTO registrationDTO = new RegistrationDTO(trener.getId(), trener.getKorisnickoIme(), trener.getIme(), trener.getPrezime(), 
-	        			trener.getPassword(), trener.getEmail(), trener.getDatumRodjenja(), 
-	        			trener.getTelefon(), trener.getUloga(), trener.getActive());
-	        	registrationDTOS.add(registrationDTO);
-        	}
-        }
-
-        // Vraćamo odgovor 200 OK, a kroz body odgovora šaljemo podatke o pronađenim zaposlenima
-        return new ResponseEntity<>(registrationDTOS, HttpStatus.OK);
-    }
+        /*System.out.println(uloga);
+        System.out.println(uloga + " je jedanaka admin: " + uloga.equals("admin"));*/
+        if(registrationDTO.getUloga().equals("admin")) {
+        	System.out.println("usao");
+	        for (Trener trener : listaTrenera) {
+	            // Kreiramo EmployeeDTO za svakog zaposlenog, kojeg je vratila metoda findAll()
+	            // i ubacujemo ga u listu employeeDTOS
+	        	if(!trener.getActive() && !trener.getObrisan()) {       		
+		        	RegistrationDTO registrationDTO2 = new RegistrationDTO(trener.getId(), trener.getKorisnickoIme(), trener.getIme(), trener.getPrezime(), 
+		        			trener.getPassword(), trener.getEmail(), trener.getDatumRodjenja(), 
+		        			trener.getTelefon(), trener.getUloga(), trener.getActive());
+		        	registrationDTOS.add(registrationDTO2);
+	        	}
+	        }
 	
+	        // Vraćamo odgovor 200 OK, a kroz body odgovora šaljemo podatke o pronađenim zaposlenima
+	        return new ResponseEntity<>(registrationDTOS, HttpStatus.OK);
+		} else {
+			//System.out.println("stigo");
+			List<RegistrationDTO> lista = new ArrayList<>();
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+	    }
+	}
 	@PutMapping(value = "prihvacen/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<RegistrationDTO> updateTrener(@PathVariable Long id) throws Exception {
