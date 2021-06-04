@@ -7,7 +7,7 @@ $(document).ready(function () {
         window.location.href = "trener.html";
     }
     if(uloga === null) {
-        window.location.href = "index.html";
+        window.location.href = "../index.html";
     }
 });
 

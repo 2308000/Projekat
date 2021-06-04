@@ -9,7 +9,7 @@ $(document).ready(function () {
             window.location.href = "clan.html";
         }
         if(uloga === null) {
-            window.location.href = "index.html";
+            window.location.href = "../index.html";
         }
 });
 

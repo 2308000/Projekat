@@ -121,3 +121,18 @@ body {
 .button:hover {
     background-color: rgb(192, 191, 191);
 }
+
+#log {
+    text-decoration: none;
+    color: rgb(172, 171, 171);
+}
+
+#log:hover {
+    color: rgb(192, 191, 191);
+}
+
+.button1 {
+    position: absolute; 
+    top: 15px; 
+    right: 15px;
+}
