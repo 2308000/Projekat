@@ -6,7 +6,7 @@ $(document).ready(function () {
     if(uloga === "trener") {
         window.location.href = "trener.html";
     }
-    if(uloga === null) {
+    if(uloga === "odjavljen") {
         window.location.href = "../index.html";
     }
 });
@@ -14,5 +14,5 @@ $(document).ready(function () {
 
 function logout() {
     console.log("Logged out successfully!");
-    localStorage.setItem("role", null);
+    localStorage.setItem("role", "odjavljen");
 }

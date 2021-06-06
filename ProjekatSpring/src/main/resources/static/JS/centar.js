@@ -1,7 +1,7 @@
 $(document).ready(function () { 
     var uloga = localStorage.getItem("role");
-    if(uloga === null) {
-        window.location.href = "index.html";
+    if(uloga === "odjavljen" || uloga === null) {
+        window.location.href = "../index.html";
     }
     if(uloga === "trener") {
         window.location.href = "trener.html";
@@ -9,65 +9,76 @@ $(document).ready(function () {
     if(uloga === "clan") {
         window.location.href = "clan.html";
     }
-});
 
-$(document).on("submit", "form", function (event) {           // kada je submit-ovana forma za kreiranje novog zaposlenog
-    event.preventDefault();                                   // sprecavamo automatsko slanje zahteva da bismo pokupili podatke iz forme
-
-    // preuzimamo vrednosti unete u formi
-    var nazivCentra = $("#NameField").val();
-    var adresa = $("#AdressField").val();
-    var brojTelefonaCentra = $("#ContactField").val();
-    var emailCentra = $("#EmailField").val();
-    var zastita = localStorage.getItem("role");
-    if(isNaN(brojTelefonaCentra)) {
-        alert("Contact must be a telephone number!");
-        return false;
-    }
-    // kreiramo objekat zaposlenog
-    // nazivi svih atributa moraju se poklapati sa nazivima na backend-u
-    var noviCentar = {
-        nazivCentra,
-        adresa,
-        brojTelefonaCentra,
-        emailCentra,
+    let zastita = uloga;
+    var provera = {
         zastita
     }
-    console.log(noviCentar);
-    // ajax poziv
+
     $.ajax({
-        type: "POST",                                               // HTTP metoda je POST
-        url: "http://localhost:8080/api/fitnessCentar/novi",                 // URL na koji se šalju podaci
-        dataType: "json",                                           // tip povratne vrednosti
+        type: "POST",                                              
+        url: "http://localhost:8080/api/fitnessCentar/prikaz",                 
+        dataType: "json",
         contentType: "application/json",                            // tip podataka koje šaljemo
-        data: JSON.stringify(noviCentar),                          // u body-ju šaljemo novog zaposlenog (JSON.stringify() pretvara JavaScript objekat u JSON)
-        success: function (res) {                                   // ova f-ja se izvršava posle uspešnog zahteva
-            console.log(res);
-            if(res.zastita == "admin") {
-                alert("Centar " + noviCentar.nazivCentra + " je uspesno kreiran!");
-                window.location.href = "admin.html";
-            } else if(res.zastita == "broj") {
-                alert("Broj vec postoji!");
-            } else if(res.zastita == "email") {
-                alert("Email adresa vec postoji!");
-            } else {
-                alert("Nemate privilegiju dodavanja centra!");
-                if(res.zastita == "clan") {
-                    window.location.href = "clan.html";
-                }
-                if(res.zastita == "trenre") {
-                    window.location.href = "trener.html";
-                }
-                window.location.href = "../index.html";
+        data: JSON.stringify(provera),                                          
+        success: function (res) {
+            for (i = 0; i < res.length; i++) {                      
+                let row = "<tr id = 'tempRed" + res[i].id +"'>";
+                row += "<td class=\"newCell center\">" + res[i].id + "</td>";
+                row += "<td class=\"newCell center\" data-naziv=" + res[i].nazivCentra + ">" + res[i].nazivCentra + "</td>";
+                row += "<td class=\"newCell center\" data-adresa=" + res[i].adresa + ">" + res[i].adresa + "</td>";
+                row += "<td class=\"newCell center\" data-broj=" + res[i].brojTelefonaCentra + ">" + res[i].brojTelefonaCentra + "</td>"; 
+                row += "<td class=\"newCell center\" data-email=" + res[i].emailCentra + ">" + res[i].emailCentra + "</td>";    
+                let btn1 = "<button id = \"izmena\" class='button1' data-id=" + res[i].id + ">Izmeni</button>"
+                let btn2 = "<button id = \"brisanje\" class='button1' data-id=" + res[i].id + ">Obriši</button>"
+                row += "<td class=\"center\">" + btn1 + "</td>";   
+                row += "<td class=\"center\">" + btn2 + "</td>";                           
+                row += "</tr>";                                     
+                $('#centri').append(row);  
+                //console.log(res);  
             }
         },
-        error: function () {                                        // ova f-ja se izvršava posle neuspešnog zahteva
-            alert("Greška!");
+        error: function (res) {                                     
+            console.log("ERROR:\n", res);
         }
     });
-    
 });
 
-/*function test() {
-    console.log("hello");
-}*/
+$(document).on('click', '#izmena', function () {
+    localStorage.setItem("id", this.dataset.id);
+    window.location.href = "izmena-centra.html"
+
+});
+
+$(document).on('click', '#brisanje', function () {            // kada je button (čija je klasa class = btnSeeMore) kliknut
+    // this je referenca na HTML element koji predstavlja kliknuto dugme See More
+    // dataset je kolekcija svih custom data atributa datog HTML elementa iz koje uzimamo id
+    // više o data atributima na: https://css-tricks.com/a-complete-guide-to-data-attributes/
+    let id = this.dataset.id;
+
+    let toHide = "#tempRed";
+    toHide += id;
+    let tableRow = $(toHide);
+    tableRow.hide();
+
+    // nakon što korisnik klikne dugme See More dobavljaju se i prikazuju podaci o traženom zaposlenom
+    $.ajax({
+        type: "PUT",                                              
+        url: "http://localhost:8080/api/fitnessCentar/brisanje/" + id,                 
+        dataType: "json",                                  // tip povratne vrednosti
+        contentType: "application/json",
+        //data: JSON.stringify(trenerId),  
+        success: function (res) {                               // ova f-ja se izvršava posle uspešnog zahteva
+            console.log("SUCCESS:\n", res);
+            alert("Centar " + id + " je obrisan!");
+        },
+        error: function (res) {                                // ova f-ja se izvršava posle neuspešnog zahteva
+            console.log("ERROR:\n", res);
+        }
+    });
+});
+
+function logout() {
+    console.log("Logged out successfully!");
+    localStorage.setItem("role", "odjavljen");
+}

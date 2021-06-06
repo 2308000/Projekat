@@ -10,8 +10,8 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
         //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
         window.location.href = "clan.html";
     }
-    if(uloga === null) {
-        window.location.href = "index.html";
+    if(uloga === "odjavljen") {
+        window.location.href = "../index.html";
     }
 
     var zastita = {

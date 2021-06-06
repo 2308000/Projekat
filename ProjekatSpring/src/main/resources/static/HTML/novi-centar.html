@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>New Centar Registration</title>
+        <link rel="stylesheet" href="../styles.css">
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/novi-centar.js"></script>
+   </head>
+   <body style="color: white;">
+    <img src="../Pictures/pic1.jpg" id="img" style="float:left">
+    <img src="../Pictures/pic2.jpg" id="img" style="float:right">
+    
+    <div class="center" id="container">
+        <div id="navigation-bar-reg" class="center">
+            <a href="centar.html">Pregled centara</a>
+            <a href="#">Dodavanje sala</a>
+            <a href="#">Registracija trenera</a>
+            <a href="#">Brisanje trenera</a>
+            <a href="table.html">Zahtevi za trenere</a>
+            <a href="termin.html">Termini</a>
+            <a href="admin.html">Profil</a>
+        </div>
+        <div id="form-reg" class="text-shadow center">
+            <form name = "registracija" method="POST">
+                <fieldset>
+                    <legend class = "text-shadow center"><h1 style="color:grey">New Fitness Center</h1></legend>
+
+                    <label for="NameField">Name: </label>
+                    <input class="center" id="NameField" name = "NameField" type="text"
+                        maxlength="35"
+                        required = "required"> <br> <br>
+
+
+                    <label for="AdressField">Adress: </label>
+                    <input class="center" id="AdressField" type="text" name = "AdressField"
+                        maxlength="35"
+                        required = "required"> <br> <br>
+
+                    <label for="ContactField"> Number: </label>
+                    <input class="center" type="tel" name = "ContactField" id="ContactField" placeholder="+381 66 11 11 111" required="required"> <br> <br>
+
+                    <label for="EmailField"> Email: </label>
+                    <input class="center" id="EmailField" type="email" name = "EmailField" required="required">  <br> <br>                         
+                </fieldset> 
+            </div> <br>
+
+            <div id="to-center">                 
+                <div class="center">
+                    <input class="button1" type="submit" value="Dodaj">
+                </div>
+            </div>
+        </form>
+    </div>
+    <span><a id="log" href="../index.html"><button style="position: absolute; top: 15px; right: 15px;" class="button1" onclick="logout()">LOG OUT</a></span>
+</body>
+</html>

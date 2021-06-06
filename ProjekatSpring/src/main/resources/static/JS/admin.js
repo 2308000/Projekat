@@ -8,12 +8,12 @@ $(document).ready(function () {
         //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
         window.location.href = "clan.html";
     }
-    if(uloga === null) {
+    if(uloga === "odjavljen") {
         window.location.href = "../index.html";
     }
 });
 
 function logout() {
     console.log("Logged out successfully!");
-    localStorage.setItem("role", null);
+    localStorage.setItem("role", "odjavljen");
 }

@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>New Centar Registration</title>
+        <link rel="stylesheet" href="../styles.css">
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <!-- <script src="../js/sala.js"></script> -->
+   </head>
+   <body style="color: white;">
+    <img src="../Pictures/pic1.jpg" id="img" style="float:left">
+    <img src="../Pictures/pic2.jpg" id="img" style="float:right">
+    
+    <div class="center" id="container">
+    
+        <div id="navigation-bar-reg" class="center">
+            <a href="centar.html">Pregled centara</a>
+            <a href="#">Dodavanje sala</a>
+            <a href="#">Registracija trenera</a>
+            <a href="#">Brisanje trenera</a>
+            <a href="table.html">Zahtevi za trenere</a>
+            <a href="termin.html">Termini</a>
+            <a href="admin.html">Profil</a>
+        </div>
+        <div id="form-reg" class="text-shadow center">
+            <form name = "registracija" method="POST">
+                <fieldset>
+                    <legend class = "text-shadow center"><h1 style="color:grey">New Fitness Center</h1></legend>
+
+                    <label for="CapacityField">Kapacitet: </label>
+                    <input class="center" id="CapacityField" name = "CapacityField" type="text"
+                        maxlength="35"
+                        required = "required"> <br> <br>
+
+                    <label for="OzankaField">Ozanaka: </label>
+                    <input class="center" id="OzankaField" type="text" name = "OzankaField"
+                        maxlength="35"
+                        required = "required"> <br> <br>  
+                        
+                    <div class="selection">
+                        <label for = "centar">Odaberite ID centra:</label>
+                        <select name = "centar" id = "centar">
+                            <option value="Member"> Member </option>
+                            <option value="Trainer"> Trainer </option>
+                        </select>   
+                    </div> 
+                </fieldset> 
+            </div> <br>
+
+            <div id="to-center">                 
+                <div class="center">
+                    <input class="button1" type="submit" value="Dodaj salu">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>
