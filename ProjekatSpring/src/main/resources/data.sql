@@ -19,8 +19,12 @@ INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja
 INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, obrisan, prosecna_ocena, fitness_centar_id) VALUES ('Voooox', 'Nikolija', 'Vukic', 'pt', 'nikovu1@gmail.com', '1997-05-17', '0663142125', 'trener', '0', '0',  '0.0', 1);
 INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, obrisan, prosecna_ocena, fitness_centar_id) VALUES ('Woo000oox', 'Nikolina', 'Vukic', 'pt', 'nikovu2@gmail.com', '1997-05-17', '06631432115', 'trener', '0', '0',  '0.0', 1);
 
-INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id) VALUES ('50', 'Broj1', 1);
-INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id) VALUES ('50', 'Broj2', 1);
+INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id, obrisana) VALUES ('50', 'Broj1', 1, '0');
+INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id, obrisana) VALUES ('50', 'Broj2', 1, '0');
+INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id, obrisana) VALUES ('50', 'Broj5', 1, '1');
+INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id, obrisana) VALUES ('50', 'Broj3', 3, '0');
+INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id, obrisana) VALUES ('50', 'Broj4', 3, '0');
+INSERT INTO SALA(kapacitet, oznaka_sale, fitness_centar_id, obrisana) VALUES ('50', 'Broj6', 3, '1');
 
 INSERT INTO TRENING(naziv_treninga, opis, tip) VALUES ('STRENGTH', 'WEIGHT LIFTING', 'FOR MEN AND WOMEN'); 
 INSERT INTO TRENING(naziv_treninga, opis, tip) VALUES ('FUNCTIONAL', 'CROSSFIT', 'FOR BOYS AND GIRLS');

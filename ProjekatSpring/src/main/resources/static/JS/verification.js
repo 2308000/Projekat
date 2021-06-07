@@ -5,15 +5,16 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
     if(uloga === "trener") {
         //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
         window.location.href = "trener.html"
-    }
-    if(uloga === "clan") {
+    } else if(uloga === "clan") {
         //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
         window.location.href = "clan.html";
-    }
-    if(uloga === "odjavljen") {
+    } else if (uloga === "odjavljen" || uloga == null) {
+        localStorage.setItem("role", "odjavljen");
+        window.location.href = "../index.html";
+    } else if(uloga !== "admin") {
+        alert("Nemate pristup ovoj stranici!");
         window.location.href = "../index.html";
     }
-
     var zastita = {
         uloga
     }
@@ -31,6 +32,7 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
                 row += "<td class=\"newCell center\">" + res[i].korisnickoIme + "</td>";
                 row += "<td class=\"newCell center\">" + res[i].ime + "</td>";
                 row += "<td class=\"newCell center\">" + res[i].prezime + "</td>";
+                row += "<td class=\"newCell center\">" + res[i].centarID + "</td>";
                 let btn1 = "<button id = \"accept\" class='button1' data-id=" + res[i].id + ">Accept</button>";
                 row += "<td class=\"center\">" + btn1 + "</td>";
                 let btn2 = "<button id = \"decline\" class='button1' data-id=" + res[i].id + ">Decline</button>";   

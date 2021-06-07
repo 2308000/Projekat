@@ -3,12 +3,14 @@ $(document).ready(function () {
     if(uloga === "trener") {
         //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
         window.location.href = "trener.html"
-    }
-    if(uloga === "clan") {
+    } else if(uloga === "clan") {
         //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
         window.location.href = "clan.html";
-    }
-    if(uloga === "odjavljen") {
+    } else if (uloga === "odjavljen" || uloga == null) {
+        localStorage.setItem("role", "odjavljen");
+        window.location.href = "../index.html";
+    } else if(uloga !== "admin") {
+        alert("Nemate pristup ovoj stranici!");
         window.location.href = "../index.html";
     }
 });

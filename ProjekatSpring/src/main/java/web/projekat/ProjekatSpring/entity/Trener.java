@@ -56,7 +56,7 @@ public class Trener implements Serializable {
 
 	
 	public Trener(String korisnickoIme, String ime, String prezime, String password, String email, Date datumRodjenja,
-			String telefon, String uloga, boolean active, boolean obrisan) {
+			String telefon, String uloga, boolean active, boolean obrisan, FitnessCentar fitnessCentar) {
 		super();
 		this.korisnickoIme = korisnickoIme;
 		this.ime = ime;
@@ -69,9 +69,10 @@ public class Trener implements Serializable {
 		this.active = active;
 		this.obrisan = obrisan;
 		this.prosecnaOcena = 0.0;
+		this.fitnessCentar = fitnessCentar;
 	}
 
-
+	
 	public Boolean getObrisan() {
 		return obrisan;
 	}

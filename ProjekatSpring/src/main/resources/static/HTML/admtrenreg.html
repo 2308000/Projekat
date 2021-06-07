@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>New Trainer Registration</title>
+        <link rel="stylesheet" href="../styles.css">
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/admin-trainer-reg.js"></script>
+   </head>
+   <body style="color: white;">
+    <img src="../Pictures/pic1.jpg" id="img" style="float:left">
+    <img src="../Pictures/pic2.jpg" id="img" style="float:right">
+    
+    <div class="center" id="container">
+    
+        <div id="navigation-bar-reg" class="center">
+            <a href="../index.html">Home</a>
+            <a href="login.html">Login</a>
+            <a href="registration.html">Sign-up</a>
+            <a href="termin.html">Schedule</a>
+            <a href="#">Our prices</a>
+        </div>
+        <div id="form-reg" class="text-shadow center">
+            <form name = "tregistracija" method="POST">
+                <fieldset>
+                    <legend class = "text-shadow center"><h1 style="color:grey">Registration</h1></legend>
+
+                    
+
+                    <label for="UsernameField">Username: </label>
+                    <input class="center" id="UsernameField" name = "UsernameField" type="text"
+                        maxlength="35"
+                        required = "required"> <br> <br>
+
+
+                    <label for="PassField">Password: </label>
+                    <input class="center" id="PassField" type="password" name = "PassField"
+                        maxlength="35"
+                        required = "required"> <br> <br>
+
+                    <label for="ConfirmPassField">Confirm Password: </label>
+                    <input class="center" id="ConfirmPassField" type="password" name = "ConfirmPassField"
+                        maxlength="35"
+                        required = "required"> <br> <br>
+
+                    <label for="NameField">First Name: </label>
+                    <input class="center" id="NameField" type="text" name = "NameField"
+                        maxlength="35"
+                        required = "required"> <br> <br>
+
+
+                    <label for="SurnameField">Last Name: </label>
+                    <input class="center" id="SurnameField" type="text" name = "SurnameField"
+                        maxlength="35"
+                        required = "required"> <br> <br>
+
+
+                    <label for="EmailField"> Email: </label>
+                    <input class="center" id="EmailField" type="email" name = "EmailField" required="required">  <br> <br> 
+                    
+                    
+                    <label for="DateField"> Date of birth: </label>
+                    <input class="center" id="DateField" type="date" required="required" name = "DateField">  <br> <br> 
+
+                    <label for="ContactField"> Number: </label>
+                    <input class="center" type="tel" name = "ContactField" id="ContactField" placeholder="+381 66 11 11 111" required="required"> <br> <br> <hr class="line"> 
+                    
+                    <label for="centarId"> Choose center ID: </label>
+                    <select name = "centarId" id = "centarId">
+                    </select>
+                    
+                </fieldset> 
+            </div> <br>
+
+            <div id="to-center">
+                
+                
+                <div class="center">
+                    <input class="button1" type="submit" value="Submit">
+                </div>
+            </div>
+        </form>
+    </div>
+    <span><a id="log" href="../index.html"><button style="position: absolute; top: 15px; right: 15px;" class="button1" onclick="logout()">LOG OUT</a></span>
+</body>
+</html>

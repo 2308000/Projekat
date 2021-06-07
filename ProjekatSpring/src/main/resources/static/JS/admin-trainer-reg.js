@@ -1,19 +1,19 @@
-$(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Object Model) učitan da bi JS mogao sa njim da manipuliše.
-    // ajax poziv
-    
+$(document).ready(function () { 
     var uloga = localStorage.getItem("role");
     if(uloga === "trener") {
-        //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
-        window.location.href = "trener.html"
+        window.location.href = "trener.html";
     } else if(uloga === "clan") {
-        //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
         window.location.href = "clan.html";
     } else if(uloga === "admin") {
-        window.location.href = "admin.html";
-    } else if (uloga === "odjavljen" || uloga == null) {
+        uloga = "admin";
+    } else if(uloga === "odjavljen" || uloga == null) {
         localStorage.setItem("role", "odjavljen");
-        uloga = "odjavljen";
-    } 
+        window.location.href = "../index.html";
+    } else if(uloga !== "admin") {
+        alert("Nemate pristup ovoj stranici!");
+        window.location.href = "../index.html";
+    }
+
     var zastita = {
         uloga
     }
@@ -23,7 +23,7 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
         url: "http://localhost:8080/api/registracija/centarID",                 
         dataType: "json",
         contentType: "application/json",                            
-        data: JSON.stringify(zastita),                                          
+        data: JSON.stringify(zastita),                                       
         success: function (res) {
             for (i = 0; i < res.length; i++) {                      
                 let opcija = "<option class=\"center\">" + res[i].id + "</option>";                                
@@ -49,20 +49,21 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
     var email = $("#EmailField").val();
     var datumRodjenja = $("#DateField").val();
     var telefon = $("#ContactField").val();
+    var zastita = localStorage.getItem("role");
     var centarID = $("#centarId").val();
-    var uloga  = "trener";
-    var active = false;
+    var uloga = "trener";
+    var active = true;
     if(password !== passwordC) {   
         alert("Passwords do not match!");
         return false;
-    }
+    } 
     if(isNaN(telefon)) {
         alert("Contact must be a telephone number!");
         return false;
-    } 
+    }
     // kreiramo objekat zaposlenog
     // nazivi svih atributa moraju se poklapati sa nazivima na backend-u
-    var noviTrener = {
+    var noviKorisnik = {
         korisnickoIme,
         password,
         ime,
@@ -72,29 +73,30 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
         telefon,
         uloga,
         active,
-        centarID
+        centarID,
+        zastita
     }
-    console.log(noviTrener);
+    console.log(noviKorisnik);
     // ajax poziv
     $.ajax({
         type: "POST",                                               // HTTP metoda je POST
-        url: "http://localhost:8080/api/registracija/trener",                 // URL na koji se šalju podaci
+        url: "http://localhost:8080/api/registracija/atrener",                 // URL na koji se šalju podaci
         dataType: "json",                                           // tip povratne vrednosti
         contentType: "application/json",                            // tip podataka koje šaljemo
-        data: JSON.stringify(noviTrener),                          // u body-ju šaljemo novog zaposlenog (JSON.stringify() pretvara JavaScript objekat u JSON)
+        data: JSON.stringify(noviKorisnik),                          // u body-ju šaljemo novog zaposlenog (JSON.stringify() pretvara JavaScript objekat u JSON)
         success: function (res) {                                   // ova f-ja se izvršava posle uspešnog zahteva
             console.log(res);
-            if(res.uloga == "username") {
+            if(res.zastita == "greska") {
+                alert("Morate biti administrator za ovu mogucnost!");
+            } else if(res.uloga == "username") {
                 alert("Korisnicko ime vec postoji!");
             } else if(res.uloga == "email") {
                 alert("Email adresa vec postoji!");
             } else if(res.uloga == "broj") {
                 alert("Broj telefona vec postoji!");
-            } else if(res.uloga == "greska") {  
-                alert("Morate biti odjavljeni da se registrujete!");
             } else { 
-                alert(noviTrener.korisnickoIme + " je poslan na verifikaciju!");
-                window.location.href = "termin.html";
+                alert("Trener " + noviKorisnik.korisnickoIme + " je uspesno kreiran!");
+                window.location.href = "admin.html";
             }
         },
         error: function () {                                        // ova f-ja se izvršava posle neuspešnog zahteva
@@ -104,6 +106,7 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
     
 });
 
-/*function test() {
-    console.log("hello");
-}*/
+function logout() {
+    console.log("Logged out successfully!");
+    localStorage.setItem("role", "odjavljen");
+}

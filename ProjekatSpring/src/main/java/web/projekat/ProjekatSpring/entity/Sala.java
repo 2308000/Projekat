@@ -17,6 +17,9 @@ public class Sala implements Serializable {
     @Column(name = "oznaka_sale", nullable = false, unique = true)
     private String oznakaSale;
     
+    @Column
+    private boolean obrisana;
+    
     @ManyToOne(fetch = FetchType.EAGER)
     private FitnessCentar fitnessCentar;
     
@@ -65,5 +68,21 @@ public class Sala implements Serializable {
 
 	public void setTermini(Set<Termin> termini) {
 		this.termini = termini;
+	}
+
+	public boolean isObrisana() {
+		return obrisana;
+	}
+
+	public void setObrisana(boolean obrisan) {
+		this.obrisana = obrisan;
+	}
+
+	public Sala(Long id, Integer kapacitet, String oznakaSale, boolean obrisan) {
+		super();
+		this.id = id;
+		this.kapacitet = kapacitet;
+		this.oznakaSale = oznakaSale;
+		this.obrisana = obrisan;
 	}  
 }

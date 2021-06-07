@@ -13,6 +13,25 @@ public class RegistrationDTO {
 	private String telefon;
 	private String uloga;
 	private boolean active; 
+	private String zastita;
+	private Long centarID;
+	
+	
+	public Long getCentarID() {
+		return centarID;
+	}
+
+	public void setCentarID(Long centarID) {
+		this.centarID = centarID;
+	}
+
+	public String getZastita() {
+		return zastita;
+	}
+
+	public void setZastita(String zastita) {
+		this.zastita = zastita;
+	}
 
 	public Long getId() {
 		return id;
@@ -106,6 +125,57 @@ public class RegistrationDTO {
 		this.active = active;
 	}
 	
+	public RegistrationDTO(String korisnickoIme, String ime, String prezime, String password, String email,
+			Date datumRodjenja, String telefon, String uloga, boolean active, String zastita) {
+		super();
+		this.korisnickoIme = korisnickoIme;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.password = password;
+		this.email = email;
+		this.datumRodjenja = datumRodjenja;
+		this.telefon = telefon;
+		this.uloga = uloga;
+		this.active = active;
+		this.zastita = zastita;
+	}
+
+	
+	public RegistrationDTO(String korisnickoIme, String ime, String prezime, String password, String email,
+			Date datumRodjenja, String telefon, String uloga, boolean active, Long centarID) {
+		super();
+		this.korisnickoIme = korisnickoIme;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.password = password;
+		this.email = email;
+		this.datumRodjenja = datumRodjenja;
+		this.telefon = telefon;
+		this.uloga = uloga;
+		this.centarID = centarID;
+		this.active = active;
+	}
+	
+	public RegistrationDTO(Long id, String korisnickoIme, String ime, String prezime, String password, String email,
+			Date datumRodjenja, String telefon, String uloga, boolean active, Long centarID) {
+		super();
+		this.id = id;
+		this.korisnickoIme = korisnickoIme;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.password = password;
+		this.email = email;
+		this.datumRodjenja = datumRodjenja;
+		this.telefon = telefon;
+		this.uloga = uloga;
+		this.centarID = centarID;
+		this.active = active;
+	}
+	public RegistrationDTO(Long id) {
+		super();
+		this.id = id;
+	}
+
 	public RegistrationDTO() {
 		super();
 	}

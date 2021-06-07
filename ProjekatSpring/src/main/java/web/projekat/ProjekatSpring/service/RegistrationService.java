@@ -1,11 +1,15 @@
 package web.projekat.ProjekatSpring.service;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.projekat.ProjekatSpring.entity.Clan;
+import web.projekat.ProjekatSpring.entity.FitnessCentar;
 import web.projekat.ProjekatSpring.repository.ClanRepository;
+import web.projekat.ProjekatSpring.repository.FitnessCentarRepository;
 import web.projekat.ProjekatSpring.entity.Trener;
 import web.projekat.ProjekatSpring.repository.TrenerRepository;
 import web.projekat.ProjekatSpring.entity.Administrator;
@@ -22,6 +26,9 @@ public class RegistrationService {
 	@Autowired
 	private AdministratorRepository administratorRepository;
 	
+	@Autowired
+	private FitnessCentarRepository fitnessCentarRepository;
+	
 	public List<Trener> findAllTrainers() {
         List<Trener> treneri = this.trenerRepository.findAll();
         return treneri;
@@ -36,6 +43,14 @@ public class RegistrationService {
         List<Clan> clanovi = this.clanRepository.findAll();
         return clanovi;
     }
+	
+	public List<FitnessCentar> findAllCenters() {
+		return this.fitnessCentarRepository.findAll();
+	}
+	
+	public FitnessCentar findCenterByID(Long id) {
+		return this.fitnessCentarRepository.getOne(id);
+	}
 	
 	public Clan save(Clan clan) {
         return this.clanRepository.save(clan);

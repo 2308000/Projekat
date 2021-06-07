@@ -34,14 +34,13 @@ public class VerificationController {
         /*System.out.println(uloga);
         System.out.println(uloga + " je jedanaka admin: " + uloga.equals("admin"));*/
         if(registrationDTO.getUloga().equals("admin")) {
-        	System.out.println("usao");
 	        for (Trener trener : listaTrenera) {
 	            // Kreiramo EmployeeDTO za svakog zaposlenog, kojeg je vratila metoda findAll()
 	            // i ubacujemo ga u listu employeeDTOS
 	        	if(!trener.getActive() && !trener.getObrisan()) {       		
 		        	RegistrationDTO registrationDTO2 = new RegistrationDTO(trener.getId(), trener.getKorisnickoIme(), trener.getIme(), trener.getPrezime(), 
 		        			trener.getPassword(), trener.getEmail(), trener.getDatumRodjenja(), 
-		        			trener.getTelefon(), trener.getUloga(), trener.getActive());
+		        			trener.getTelefon(), trener.getUloga(), trener.getActive(), trener.getFitnessCentar().getId());
 		        	registrationDTOS.add(registrationDTO2);
 	        	}
 	        }
@@ -65,7 +64,7 @@ public class VerificationController {
         // Mapiramo ažuriranog zaposlenog na DTO objekat koji vraćamo kroz body odgovora
         RegistrationDTO updatedRegDTO = new RegistrationDTO(updatedTrener.getId(), updatedTrener.getKorisnickoIme(), updatedTrener.getIme(), updatedTrener.getPrezime(), 
         		updatedTrener.getPassword(), updatedTrener.getEmail(), updatedTrener.getDatumRodjenja(), 
-        		updatedTrener.getTelefon(), updatedTrener.getUloga(), updatedTrener.getActive());
+        		updatedTrener.getTelefon(), updatedTrener.getUloga(), updatedTrener.getActive(), updatedTrener.getFitnessCentar().getId());
 
         // Vraćamo odgovor 200 OK, a kroz body odgovora šaljemo podatke o ažuriranom zaposlenom
         return new ResponseEntity<>(updatedRegDTO, HttpStatus.OK);

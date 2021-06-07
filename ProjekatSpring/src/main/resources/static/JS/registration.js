@@ -1,14 +1,17 @@
 $(document).ready(function () { 
     var uloga = localStorage.getItem("role");
-    if(uloga === "admin") {
-        window.location.href = "admin.html";
-    }
     if(uloga === "trener") {
-        window.location.href = "trener.html";
-    }
-    if(uloga === "clan") {
+        //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
+        window.location.href = "trener.html"
+    } else if(uloga === "clan") {
+        //console.log("Morate se izlogovati da biste se ponovo ulogovali!");
         window.location.href = "clan.html";
-    }
+    } else if(uloga === "admin") {
+        window.location.href = "admin.html";
+    } else if (uloga === "odjavljen" || uloga == null) {
+        localStorage.setItem("role", "odjavljen");
+        uloga = "odjavljen";
+    } 
 });
 
 $(document).on("submit", "form", function (event) {           // kada je submit-ovana forma za kreiranje novog zaposlenog
