@@ -4,7 +4,7 @@
     <title>Trainer requests</title>
     <link rel="stylesheet" href="../styles.css">
     <script src="../js/jquery-3.6.0.min.js"></script>
-    <script src="../js/verification.js"></script>
+    <script src="../js/brisanje-trenera.js"></script>
 </head>
 <body style="color: white;">
     <img src="../Pictures/background.jpg" id="background">
@@ -13,8 +13,8 @@
         <div id="navigation-bar-log" class="center">
             <span><a href="centar.html">Pregled centara</a> </span>
             <span><a href="sala.html">Pregled sala</a></span>
-            <span><a href="#">Registracija trenera</a></span>
-            <span><a href="#">Brisanje trenera</a></span>
+            <span><a href="admtrenreg.html">Registracija trenera</a></span>
+            <span><a href="brisanje-trenera.html">Brisanje trenera</a></span>
             <span><a href="table.html">Zahtevi za trenere</a></span>
             <span><a href="termin.html">Termini</a> </span>
         </div>
@@ -27,9 +27,10 @@
                     <th>First name</th>
                     <th>Last name</th>
                     <th>Centar ID</th>
-                    <th>Accept</th>
-                    <th>Decline</th>
+                    <th>Active</th>
+                    <th>Delete</th>
                 </tr>
         </table>
     </div>
+    <span><a id="log" href="../index.html"><button style="position: absolute; top: 15px; right: 15px;" class="button1" onclick="logout()">LOG OUT</a></span>
 </body>

@@ -93,4 +93,12 @@ public class RegistrationService {
         this.trenerRepository.deleteById(id);
     }
 	
+	public Trener deleteLogically(Long id) throws Exception {
+		Trener trenerToDelete = this.trenerRepository.getOne(id);
+		if(trenerToDelete.getId() == null) {
+			throw new Exception("Trainer doesn't exist!");
+		}		
+		trenerToDelete.setObrisan(true);
+		return this.trenerRepository.save(trenerToDelete);
+	}
 }

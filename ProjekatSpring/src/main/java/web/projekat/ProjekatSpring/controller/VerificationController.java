@@ -78,5 +78,45 @@ public class VerificationController {
         // Vraćamo odgovor 204 NO_CONTENT koji signalizira uspešno brisanje
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+	
+	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/brisanje")
+    public ResponseEntity<List<RegistrationDTO>> getAllTrainers(@RequestBody RegistrationDTO registrationDTO) {
+        // Pozivanjem metode servisa dobavljamo sve zaposlene
+        List<Trener> listaTrenera = this.registrationService.findAllTrainers();
+
+        // Kreiramo listu DTO objekata koju ćemo vratiti u odgovoru na zahtev
+        List<RegistrationDTO> registrationDTOS = new ArrayList<>();
+        /*System.out.println(uloga);
+        System.out.println(uloga + " je jedanaka admin: " + uloga.equals("admin"));*/
+        if(registrationDTO.getUloga().equals("admin")) {
+	        for (Trener trener : listaTrenera) {	        	      		
+		        RegistrationDTO registrationDTO2 = new RegistrationDTO(trener.getId(), trener.getKorisnickoIme(), trener.getIme(), trener.getPrezime(), 
+    			trener.getPassword(), trener.getEmail(), trener.getDatumRodjenja(), 
+    			trener.getTelefon(), trener.getUloga(), trener.getActive(), trener.getFitnessCentar().getId());
+		        registrationDTOS.add(registrationDTO2);	        	
+	        }
+	        return new ResponseEntity<>(registrationDTOS, HttpStatus.OK);
+		} else {
+			List<RegistrationDTO> lista = new ArrayList<>();
+			return new ResponseEntity<>(lista, HttpStatus.OK);
+	    }
+	}
+	
+	@PutMapping(value = "brisanje/{id}", consumes = MediaType.APPLICATION_JSON_VALUE,
+            produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<RegistrationDTO> deleteTrainerLogically(@PathVariable Long id) throws Exception {
+      
+        // Pozivanjem metode servisa ažuriramo podatke o zaposlenom
+        Trener trainerToDelete = this.registrationService.deleteLogically(id);
+        trainerToDelete.setActive(false);
+        
+        // Mapiramo ažuriranog zaposlenog na DTO objekat koji vraćamo kroz body odgovora
+        RegistrationDTO updatedRegDTO = new RegistrationDTO(trainerToDelete.getId(), trainerToDelete.getKorisnickoIme(), trainerToDelete.getIme(), trainerToDelete.getPrezime(), 
+        		trainerToDelete.getPassword(), trainerToDelete.getEmail(), trainerToDelete.getDatumRodjenja(), 
+        		trainerToDelete.getTelefon(), trainerToDelete.getUloga(), trainerToDelete.getActive(), trainerToDelete.getFitnessCentar().getId());
+
+        // Vraćamo odgovor 200 OK, a kroz body odgovora šaljemo podatke o ažuriranom zaposlenom
+        return new ResponseEntity<>(updatedRegDTO, HttpStatus.OK);
+    }
 
 }

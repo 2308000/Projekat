@@ -2,7 +2,7 @@
 <html lang = "en">
     <head>
         <meta charset="UTF-8"/>
-        <title>New Centar Registration</title>
+        <title>Dodavanje nove sale</title>
         <link rel="stylesheet" href="../styles.css">
         <script src="../js/jquery-3.6.0.min.js"></script>
         <!-- <script src="../js/sala.js"></script> -->
@@ -15,9 +15,9 @@
     
         <div id="navigation-bar-reg" class="center">
             <a href="centar.html">Pregled centara</a>
-            <a href="#">Dodavanje sala</a>
+            <a href="sala.html">Pregled sala</a>
             <a href="#">Registracija trenera</a>
-            <a href="#">Brisanje trenera</a>
+            <a href="brisanje-trenera.html">Brisanje trenera</a>
             <a href="table.html">Zahtevi za trenere</a>
             <a href="termin.html">Termini</a>
             <a href="admin.html">Profil</a>
@@ -25,7 +25,7 @@
         <div id="form-reg" class="text-shadow center">
             <form name = "registracija" method="POST">
                 <fieldset>
-                    <legend class = "text-shadow center"><h1 style="color:grey">New Fitness Center</h1></legend>
+                    <legend class = "text-shadow center"><h1 style="color:grey">Dodavanje nove sale</h1></legend>
 
                     <label for="CapacityField">Kapacitet: </label>
                     <input class="center" id="CapacityField" name = "CapacityField" type="text"
@@ -40,8 +40,6 @@
                     <div class="selection">
                         <label for = "centar">Odaberite ID centra:</label>
                         <select name = "centar" id = "centar">
-                            <option value="Member"> Member </option>
-                            <option value="Trainer"> Trainer </option>
                         </select>   
                     </div> 
                 </fieldset> 
