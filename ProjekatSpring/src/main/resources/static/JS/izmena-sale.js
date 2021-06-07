@@ -18,43 +18,33 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
     var zastita = uloga;
 
     var id = localStorage.getItem("id");
-    var nazivCentra = $("#NameField").val();
-    var adresa = $("#AdressField").val();
-    var brojTelefonaCentra = $("#ContactField").val();
-    var emailCentra = $("#EmailField").val();
-    if(isNaN(brojTelefonaCentra)) {
-        alert("Contact must be a telephone number!");
-        return false;
-    }
+    var kapacitet = $("#CapacityField").val();
+    var oznakaSale = $("#OznakaField").val();
     // kreiramo objekat zaposlenog
     // nazivi svih atributa moraju se poklapati sa nazivima na backend-u
-    var izmenjenCentar = {
+    var izmenjenaSala = {
         id,
-        nazivCentra,
-        adresa,
-        brojTelefonaCentra,
-        emailCentra,
+        kapacitet,
+        oznakaSale,
         zastita
     }
-    console.log(izmenjenCentar);
+    console.log(izmenjenaSala);
     // ajax poziv
     $.ajax({
         type: "POST",                                               // HTTP metoda je POST
-        url: "http://localhost:8080/api/fitnessCentar/izmeni",                 // URL na koji se šalju podaci
+        url: "http://localhost:8080/api/sala/izmeni",                 // URL na koji se šalju podaci
         dataType: "json",                                           // tip povratne vrednosti
         contentType: "application/json",                            // tip podataka koje šaljemo
-        data: JSON.stringify(izmenjenCentar),                          // u body-ju šaljemo novog zaposlenog (JSON.stringify() pretvara JavaScript objekat u JSON)
+        data: JSON.stringify(izmenjenaSala),                          // u body-ju šaljemo novog zaposlenog (JSON.stringify() pretvara JavaScript objekat u JSON)
         success: function (res) {                                   // ova f-ja se izvršava posle uspešnog zahteva
             console.log(res);
-            if(res.zastita == "broj") {
-                alert("Broj fitness centra vec postoji!");
-            } else if(res.zastita == "email") {
-                alert("Email centra vec postoji!");
+            if(res.zastita == "oznaka") {
+                alert("Ova oznaka sale vec postoji!");
             } else if(res.zastita == "greska") {
-                alert("Morate biti administrator da vriste izmene!");
+                alert("Morate biti administrator za biste mogli da vrsite izmene!");
             } else {
-                alert("Centar " + izmenjenCentar.nazivCentra + " je uspesno izmenjen!");
-                window.location.href = "centar.html";
+                alert("Centar " + izmenjenaSala.oznakaSale + " je uspesno izmenjena!");
+                window.location.href = "sala.html";
             }
         },
         error: function () {                                        // ova f-ja se izvršava posle neuspešnog zahteva

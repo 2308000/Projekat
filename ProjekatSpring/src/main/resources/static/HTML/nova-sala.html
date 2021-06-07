@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Dodavanje nove sale</title>
+        <link rel="stylesheet" href="../styles.css">
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/nova-sala.js"></script>
+   </head>
+   <body style="color: white;">
+    <img src="../Pictures/pic1.jpg" id="img" style="float:left">
+    <img src="../Pictures/pic2.jpg" id="img" style="float:right">
+    
+    <div class="center" id="container">
+    
+        <div id="navigation-bar-reg" class="center">
+            <a href="centar.html">Pregled centara</a>
+            <a href="sala.html">Pregled sala</a>
+            <a href="#">Registracija trenera</a>
+            <a href="brisanje-trenera.html">Brisanje trenera</a>
+            <a href="table.html">Zahtevi za trenere</a>
+            <a href="termin.html">Termini</a>
+            <a href="admin.html">Profil</a>
+        </div>
+        <div id="form-reg" class="text-shadow center">
+            <form name = "registracija" method="POST">
+                <fieldset>
+                    <legend class = "text-shadow center"><h1 style="color:grey">Dodavanje nove sale</h1></legend>
+
+                    <label for="CapacityField">Kapacitet: </label>
+                    <input class="center" id="CapacityField" name = "CapacityField" type="text"
+                        maxlength="35"
+                        required = "required"> <br> <br>
+
+                    <label for="OznakaField">Oznaka: </label>
+                    <input class="center" id="OznakaField" type="text" name = "OznakaField"
+                        maxlength="35"
+                        required = "required"> <br> <br>  
+                        
+                    <div class="selection">
+                        <label for = "centarId">Odaberite ID centra:</label>
+                        <select name = "centarId" id = "centarId">
+                        </select>   
+                    </div> 
+                </fieldset> 
+            </div> <br>
+
+            <div id="to-center">                 
+                <div class="center">
+                    <input class="button1" type="submit" value="Dodaj salu">
+                </div>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

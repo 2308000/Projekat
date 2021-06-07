@@ -34,7 +34,11 @@ public class RegistrationController {
 	    public ResponseEntity<List<RegistrationDTO>> getInactiveTrainers(@RequestBody RegistrationDTO registrationDTO) {
 	        
 	        List<FitnessCentar> listaCentara = this.registrationService.findAllCenters();     
-	        List<RegistrationDTO> registrationDTOS = new ArrayList<>();    	
+	        List<RegistrationDTO> registrationDTOS = new ArrayList<>(); 
+	        if(!registrationDTO.getZastita().equals("admin")) {
+	        	return new ResponseEntity<>(registrationDTOS, HttpStatus.OK);	
+	        }
+	        		
 	        for (FitnessCentar centar : listaCentara) {
 	        	if(!centar.isObrisan()) {     		
 		        	RegistrationDTO registrationDTO2 = new RegistrationDTO(centar.getId());
@@ -42,7 +46,7 @@ public class RegistrationController {
 	        	}
 	        }
 	        return new ResponseEntity<>(registrationDTOS, HttpStatus.OK);	
-		}
+	 	}
 	 
 	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 	            produces = MediaType.APPLICATION_JSON_VALUE, value = "/trener")

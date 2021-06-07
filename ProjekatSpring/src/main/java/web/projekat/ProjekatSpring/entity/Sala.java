@@ -84,5 +84,23 @@ public class Sala implements Serializable {
 		this.kapacitet = kapacitet;
 		this.oznakaSale = oznakaSale;
 		this.obrisana = obrisan;
+	}
+
+	public Sala(Long id, Integer kapacitet, String oznakaSale, boolean obrisana, FitnessCentar fitnessCentar) {
+		super();
+		this.id = id;
+		this.kapacitet = kapacitet;
+		this.oznakaSale = oznakaSale;
+		this.obrisana = obrisana;
+		this.fitnessCentar = fitnessCentar;
+	}
+
+	public Sala(Integer kapacitet, String oznakaSale, boolean obrisana, FitnessCentar fitnessCentar) {
+		super();
+		this.kapacitet = kapacitet;
+		this.oznakaSale = oznakaSale;
+		this.obrisana = obrisana;
+		this.fitnessCentar = fitnessCentar;
 	}  
+	
 }

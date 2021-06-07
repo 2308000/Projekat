@@ -87,6 +87,11 @@ public class FitnessCentarController {
 	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/izmeni")
     public ResponseEntity<FitnessCentarDTO> updateCenter(@RequestBody FitnessCentarDTO fitnessCentarDTO) throws Exception {
         List<FitnessCentar> listaCentara = this.fitnessCentarService.findAllCenters();
+        
+        if(!fitnessCentarDTO.getZastita().equals("admin")) {
+        	FitnessCentarDTO neizmenjeniFitnessCentarDTO = new FitnessCentarDTO(Long.valueOf(0), "", "", "", "", false, "greska"); 
+			return new ResponseEntity<>(neizmenjeniFitnessCentarDTO, HttpStatus.CREATED);
+        }
 	    for (FitnessCentar centar : listaCentara) {
 	    	if(fitnessCentarDTO.getBrojTelefonaCentra().equals(centar.getBrojTelefonaCentra())) {
     			System.out.println(fitnessCentarDTO.getBrojTelefonaCentra() + " " + centar.getBrojTelefonaCentra());

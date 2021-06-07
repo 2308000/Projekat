@@ -1,56 +1,36 @@
-<!DOCTYPE html>
-<html lang = "en">
-    <head>
-        <meta charset="UTF-8"/>
-        <title>Dodavanje nove sale</title>
-        <link rel="stylesheet" href="../styles.css">
-        <script src="../js/jquery-3.6.0.min.js"></script>
-        <!-- <script src="../js/sala.js"></script> -->
-   </head>
-   <body style="color: white;">
-    <img src="../Pictures/pic1.jpg" id="img" style="float:left">
-    <img src="../Pictures/pic2.jpg" id="img" style="float:right">
-    
+<!DOCTYPE html lang = "en">
+<head>
+    <meta charset="UTF-8">
+    <title>Fitness Centri</title>
+    <link rel="stylesheet" href="../styles.css">
+    <script src="../js/jquery-3.6.0.min.js"></script>
+    <script src="../js/sala.js"></script>
+</head>
+<body style="color: white;">
+    <img src="../Pictures/background.jpg" id="background">
     <div class="center" id="container">
-    
-        <div id="navigation-bar-reg" class="center">
-            <a href="centar.html">Pregled centara</a>
-            <a href="sala.html">Pregled sala</a>
-            <a href="#">Registracija trenera</a>
-            <a href="brisanje-trenera.html">Brisanje trenera</a>
-            <a href="table.html">Zahtevi za trenere</a>
-            <a href="termin.html">Termini</a>
-            <a href="admin.html">Profil</a>
+        <div id="navigation-bar-log" class="center">
+            <span><a href="centar.html">Pregled centara</a> </span>
+            <span><a href="sala.html">Pregled sala</a></span>
+            <span><a href="admtrenreg.html">Registracija trenera</a></span>
+            <span><a href="brisanje-trenera.html">Brisanje trenera</a></span>
+            <span><a href="table.html">Zahtevi za trenere</a></span>
+            <span><a href="termin.html">Termini</a> </span>
         </div>
-        <div id="form-reg" class="text-shadow center">
-            <form name = "registracija" method="POST">
-                <fieldset>
-                    <legend class = "text-shadow center"><h1 style="color:grey">Dodavanje nove sale</h1></legend>
-
-                    <label for="CapacityField">Kapacitet: </label>
-                    <input class="center" id="CapacityField" name = "CapacityField" type="text"
-                        maxlength="35"
-                        required = "required"> <br> <br>
-
-                    <label for="OzankaField">Ozanaka: </label>
-                    <input class="center" id="OzankaField" type="text" name = "OzankaField"
-                        maxlength="35"
-                        required = "required"> <br> <br>  
-                        
-                    <div class="selection">
-                        <label for = "centar">Odaberite ID centra:</label>
-                        <select name = "centar" id = "centar">
-                        </select>   
-                    </div> 
-                </fieldset> 
-            </div> <br>
-
-            <div id="to-center">                 
-                <div class="center">
-                    <input class="button1" type="submit" value="Dodaj salu">
-                </div>
-            </div>
-        </form>
+        
+        <table class="prikaz" id="sale">
+                <tr> <th colspan="4">Aktivne sale</th>
+                     <th colspan="2"><button class='button1'><a id="log" href="nova-sala.html" target="_blank">Dodaj salu</a></button></th>
+                </tr>
+                <tr>
+                    <th>ID</th>
+                    <th>Kapacitet</th>
+                    <th>Oznaka</th>
+                    <th>ID centra</th>
+                    <th>Izmeni</th>
+                    <th>Obrisi</th>
+                </tr>
+        </table>
     </div>
+    <span><a id="log" href="../index.html"><button style="position: absolute; top: 15px; right: 15px;" class="button1" onclick="logout()">LOG OUT</a></span>
 </body>
-</html>
