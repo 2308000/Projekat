@@ -41,6 +41,7 @@ public class LoginController {
         		if(admin.getKorisnickoIme().equalsIgnoreCase(loginDTO2.getKorisnickoIme())) {
         			if(admin.getPassword().equals(loginDTO2.getPassword())) {
         				loginDTO2.setUloga("admin");
+        				loginDTO2.setId(admin.getId());
         				loginDTO2.setError("Welcome " + loginDTO2.getKorisnickoIme() + "!");
         				return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
         			} else {
@@ -58,6 +59,7 @@ public class LoginController {
 		        		if(trener.getKorisnickoIme().equalsIgnoreCase(loginDTO2.getKorisnickoIme())) {
 		        			if(trener.getPassword().equals(loginDTO2.getPassword())) {
 		        				loginDTO2.setUloga("trener");
+		        				loginDTO2.setId(trener.getId());
 		        				loginDTO2.setError("Welcome " + loginDTO2.getKorisnickoIme() + "!");
 		        				return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
 		        			} else {
@@ -86,6 +88,7 @@ public class LoginController {
         		if(clan.getKorisnickoIme().equalsIgnoreCase(loginDTO2.getKorisnickoIme())) {
         			if(clan.getPassword().equals(loginDTO2.getPassword())) {
         				loginDTO2.setUloga("clan");
+        				loginDTO2.setId(clan.getId());
         				loginDTO2.setError("Welcome " + loginDTO2.getKorisnickoIme() + "!");
         				return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
         			} else {

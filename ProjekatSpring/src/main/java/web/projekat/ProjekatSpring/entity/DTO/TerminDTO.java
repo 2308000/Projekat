@@ -11,6 +11,10 @@ public class TerminDTO {
 	private String nazivTreninga;
 	private String opisTreninga;
 	private String tipTreninga;
+	private String zastita;
+	private Long centarID;
+	private Long salaID;
+	private Long trenerID;
 	
 	public TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
 			String nazivTreninga, String opisTreninga, String tipTreninga) {
@@ -25,8 +29,87 @@ public class TerminDTO {
 		this.tipTreninga = tipTreninga;
 	}
 
+	public TerminDTO(Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+			String nazivTreninga, String opisTreninga, String tipTreninga, String zastita) {
+		super();
+		this.pocetakTermina = pocetakTermina;
+		this.krajTermina = krajTermina;
+		this.trajanjeTermina = trajanjeTermina;
+		this.cenaTermina = cenaTermina;
+		this.nazivTreninga = nazivTreninga;
+		this.opisTreninga = opisTreninga;
+		this.tipTreninga = tipTreninga;
+		this.zastita = zastita;
+	}
+	
+	public TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+			String nazivTreninga, String opisTreninga, String tipTreninga, String zastita, Long centarID, Long salaID, Long trenerID) {
+		this.id = id;
+		this.pocetakTermina = pocetakTermina;
+		this.krajTermina = krajTermina;
+		this.trajanjeTermina = trajanjeTermina;
+		this.cenaTermina = cenaTermina;
+		this.nazivTreninga = nazivTreninga;
+		this.opisTreninga = opisTreninga;
+		this.tipTreninga = tipTreninga;
+		this.zastita = zastita;
+		this.centarID = centarID;
+		this.salaID = salaID;
+		this.trenerID = trenerID;
+	}
+	
+	public TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+			String nazivTreninga, String zastita, Long centarID, Long salaID) {
+		this.id = id;
+		this.pocetakTermina = pocetakTermina;
+		this.krajTermina = krajTermina;
+		this.trajanjeTermina = trajanjeTermina;
+		this.cenaTermina = cenaTermina;
+		this.nazivTreninga = nazivTreninga;
+		this.zastita = zastita;
+		this.centarID = centarID;
+		this.salaID = salaID;
+	}
+
+	public TerminDTO(Long salaID) {
+		this.salaID = salaID;
+	}
+
+	
+	public Long getTrenerID() {
+		return trenerID;
+	}
+
+	public void setTrenerID(Long trenerID) {
+		this.trenerID = trenerID;
+	}
+
 	public TerminDTO() {
 		super();
+	}
+
+	public Long getSalaID() {
+		return salaID;
+	}
+
+	public void setSalaID(Long salaID) {
+		this.salaID = salaID;
+	}
+
+	public Long getCentarID() {
+		return centarID;
+	}
+
+	public void setCentarID(Long centarID) {
+		this.centarID = centarID;
+	}
+
+	public String getZastita() {
+		return zastita;
+	}
+
+	public void setZastita(String zastita) {
+		this.zastita = zastita;
 	}
 
 	public Long getId() {

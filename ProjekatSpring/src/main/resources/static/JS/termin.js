@@ -41,7 +41,6 @@ $(document).on("submit", "form", function (event) {
         let tipTreninga  = document.forms['form-search'].tip.value;
         let cena =  document.forms['form-search'].cena.value;
         let datum = document.forms['form-search'].datum.value;
-
         if(isNaN(cena) || cena === "") {
             cena = 99999;
         }

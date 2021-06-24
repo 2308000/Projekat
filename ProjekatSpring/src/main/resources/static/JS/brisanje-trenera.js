@@ -34,7 +34,7 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
                 row += "<td class=\"newCell center\">" + res[i].prezime + "</td>";
                 row += "<td class=\"newCell center\">" + res[i].centarID + "</td>";
                 row += "<td class=\"newCell center\">" + res[i].active + "</td>";
-                let btn1 = "<button id = \"delete\" class='button1' data-id=" + res[i].id + ">Obrisi</button>";
+                let btn1 = "<button id = \"delete\" class='button1' data-id=" + res[i].id + ">Delete</button>";
                 row += "<td class=\"center\">" + btn1 + "</td>";                          
                 row += "</tr>";                                     
                 $('#treneri').append(row);  

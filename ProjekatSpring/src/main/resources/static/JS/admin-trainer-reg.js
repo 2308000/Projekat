@@ -14,8 +14,9 @@ $(document).ready(function () {
         window.location.href = "../index.html";
     }
 
-    var zastita = {
-        uloga
+    var zastita = uloga;
+    var provera = {
+        zastita
     }
 
     $.ajax({
@@ -23,7 +24,7 @@ $(document).ready(function () {
         url: "http://localhost:8080/api/registracija/centarID",                 
         dataType: "json",
         contentType: "application/json",                            
-        data: JSON.stringify(zastita),                                       
+        data: JSON.stringify(provera),                                       
         success: function (res) {
             for (i = 0; i < res.length; i++) {                      
                 let opcija = "<option class=\"center\">" + res[i].id + "</option>";                                
@@ -103,7 +104,7 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
             alert("Greška!");
         }
     });
-    
+
 });
 
 function logout() {

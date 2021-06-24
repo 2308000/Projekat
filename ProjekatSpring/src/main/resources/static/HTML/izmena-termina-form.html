@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <meta charset="UTF-8"/>
+        <title>Dodavanje Novog Termina</title>
+        <link rel="stylesheet" href="../styles.css">
+        <script src="../js/jquery-3.6.0.min.js"></script>
+        <script src="../js/izmena-termina-form.js"></script>
+   </head>
+    <body style="color: white;">
+        <img src="../Pictures/pic1.jpg" id="img" style="float:left">
+        <img src="../Pictures/pic2.jpg" id="img" style="float:right">
+        
+        <div class="center" id="container">
+        
+            <div id="navigation-bar-reg" class="center">
+                <span><a href="termin.html">Pregled termina</a> </span>
+                <span><a href="dodavanje-termina.html">Dodavanje termina</a></span>
+                <span><a href="izmena-termina.html">Izmena termina</a></span>
+            </div>
+            <div id="form-reg" class="text-shadow center">
+                <form name = "noviTermin" method="POST">
+                    <fieldset>
+                        <legend class = "text-shadow center"><h1 style="color:grey">Dodavanje termina</h1></legend>
+
+                        <label for="pocetak">Pocetak termina: </label>
+                        <input class="center" id="pocetak" name = "pocetak" type="datetime-local"> <br> <br>
+
+                        <label for="kraj">Kraj termina: </label>
+                        <input class="center" id="kraj" name = "kraj" type="datetime-local"> <br> <br>
+
+                        <label for="cena">Cena termina: </label>
+                        <input class="center" id="cena" type="text" name = "cena"
+                            maxlength="35"> <br> <br> 
+
+                        <label for="nazivTreninga"> Naziv treninga: </label>
+                        <select name = "nazivTreninga" id = "nazivTreninga">
+                            <option class ="center">STRENGTH</option>
+                            <option class ="center">CARDIO</option>
+                            <option class ="center">FUNCTIONAL</option>
+                        </select>
+
+                        <label for="sala"> Odaberite salu: </label>
+                        <select name = "sala" id = "sala">
+                        </select>
+                    </fieldset> 
+                </div> <br>
+
+                <div id="to-center">
+                    <div class="center">
+                        <input class="button1" type="submit" value="Submit">
+                    </div>
+                </div>
+            </form>  
+        </div>
+        <span><a id="log" href="../index.html"><button style="position: absolute; top: 15px; right: 15px;" class="button1" onclick="logout()">LOG OUT</a></span>
+    </body>
+</html>

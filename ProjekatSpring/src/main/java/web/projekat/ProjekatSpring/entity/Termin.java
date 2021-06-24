@@ -42,6 +42,39 @@ public class Termin implements Serializable {
     private Set<Clan> clanoviNeodradjenih = new HashSet<>();
     
     
+	public Termin(Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina) {
+		super();
+		this.pocetakTermina = pocetakTermina;
+		this.krajTermina = krajTermina;
+		this.trajanjeTermina = trajanjeTermina;
+		this.cenaTermina = cenaTermina;
+	}
+
+	
+	public Termin(Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+			Trening trening, Trener trener, Sala sala) {
+		super();
+		this.pocetakTermina = pocetakTermina;
+		this.krajTermina = krajTermina;
+		this.trajanjeTermina = trajanjeTermina;
+		this.cenaTermina = cenaTermina;
+		this.trening = trening;
+		this.trener = trener;
+		this.sala = sala;
+	}
+
+	public Termin(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+			Trening trening, Trener trener, Sala sala) {
+		super();
+		this.id = id;
+		this.pocetakTermina = pocetakTermina;
+		this.krajTermina = krajTermina;
+		this.trajanjeTermina = trajanjeTermina;
+		this.cenaTermina = cenaTermina;
+		this.trening = trening;
+		this.trener = trener;
+		this.sala = sala;
+	}
 	public Termin() {
 		
 	}

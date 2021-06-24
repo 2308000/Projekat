@@ -20,6 +20,10 @@ public class FitnessCentarService {
         return centri;
     }
 	
+	public FitnessCentar findById(Long id) {
+		return this.fitnessCentarRepository.getOne(id);
+	}
+	
 	public FitnessCentar save(FitnessCentar fitnessCentar) {
         return this.fitnessCentarRepository.save(fitnessCentar);
     }

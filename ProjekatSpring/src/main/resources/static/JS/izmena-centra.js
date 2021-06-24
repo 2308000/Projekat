@@ -17,7 +17,7 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
 
     var zastita = uloga;
 
-    var id = localStorage.getItem("id");
+    var id = localStorage.getItem("id-centra");
     var nazivCentra = $("#NameField").val();
     var adresa = $("#AdressField").val();
     var brojTelefonaCentra = $("#ContactField").val();

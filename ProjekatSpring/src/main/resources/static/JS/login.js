@@ -36,17 +36,22 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
         data: JSON.stringify(Login),                          // u body-ju šaljemo novog zaposlenog (JSON.stringify() pretvara JavaScript objekat u JSON)
         success: function (res) {                                   // ova f-ja se izvršava posle uspešnog zahteva
             console.log(res);
-            alert(res.error);
             if(res.uloga === "admin") {
+                localStorage.setItem("id", res.id);
                 localStorage.setItem("role", "admin");
+                alert("Welcome " + korisnickoIme);
                 window.location.href = "admin.html";
             }
             if(res.uloga === "trener") {
+                localStorage.setItem("id", res.id);
                 localStorage.setItem("role", "trener");
+                alert("Welcome " + korisnickoIme);
                 window.location.href = "trener.html";
             }
             if(res.uloga === "clan") {
+                localStorage.setItem("id", res.id);
                 localStorage.setItem("role", "clan");
+                alert("Welcome " + korisnickoIme);
                 window.location.href = "clan.html";
             }
         },

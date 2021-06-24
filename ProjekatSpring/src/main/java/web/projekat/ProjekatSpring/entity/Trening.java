@@ -27,6 +27,25 @@ public class Trening implements Serializable {
     	
 	}
 
+    
+	public Trening(String nazivTreninga, String opis, String tip) {
+		super();
+		this.nazivTreninga = nazivTreninga;
+		this.opis = opis;
+		this.tip = tip;
+	}
+
+
+	public Set<Termin> getTermini() {
+		return termini;
+	}
+
+
+	public void setTermini(Set<Termin> termini) {
+		this.termini = termini;
+	}
+
+
 	public Long getId() {
 		return id;
 	}

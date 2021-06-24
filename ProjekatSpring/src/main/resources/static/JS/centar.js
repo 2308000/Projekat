@@ -50,7 +50,7 @@ $(document).ready(function () {
 });
 
 $(document).on('click', '#izmena', function () {
-    localStorage.setItem("id", this.dataset.id);
+    localStorage.setItem("id-centra", this.dataset.id);
     window.location.href = "izmena-centra.html"
 
 });

@@ -1,12 +1,13 @@
 package web.projekat.ProjekatSpring.service;
 
-import java.util.List;
+import java.util.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import web.projekat.ProjekatSpring.entity.FitnessCentar;
 import web.projekat.ProjekatSpring.entity.Sala;
+import web.projekat.ProjekatSpring.entity.Termin;
 import web.projekat.ProjekatSpring.entity.DTO.SalaDTO;
 import web.projekat.ProjekatSpring.repository.SalaRepository;
 import web.projekat.ProjekatSpring.repository.FitnessCentarRepository;
@@ -24,6 +25,10 @@ public class SalaService {
         List<Sala> sale = this.salaRepository.findAll();
         return sale;
     }
+	
+	public Sala findById(Long id) {
+		return this.salaRepository.getOne(id);
+	}
 	
 	public Sala save(Sala sala) {
         return this.salaRepository.save(sala);
