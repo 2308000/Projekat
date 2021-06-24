@@ -86,10 +86,6 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
     console.log(trajanje);*/
     var trajanjeTermina = (Number(sati2) * 60 + Number(minute2)) - (Number(sati1) * 60 + Number(minute1));
     var cenaTermina = $("#cena").val();
-    if(cenaTermina === "") {
-        alert("Cena termina se mora uneti!");
-        return false;
-    }
     var nazivTreninga = $("#nazivTreninga").val();
     var salaID = $("#sala").val();
     var trenerID = localStorage.getItem("id");
@@ -99,11 +95,6 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
     
     if(isNaN(cenaTermina)) {
         alert("Cena mora biti broj!");
-        return false;
-    }
-
-    if(isNaN(trajanjeTermina)) {
-        alert("Trajanje mora biti broj!");
         return false;
     }
     // kreiramo objekat zaposlenog

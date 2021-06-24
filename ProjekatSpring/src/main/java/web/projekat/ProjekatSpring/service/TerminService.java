@@ -121,7 +121,7 @@ public class TerminService {
     public Termin update(Termin termin) throws Exception {
 		Termin terminToUpdate = this.terminRepository.getOne(termin.getId());
 		
-		if(termin.getCenaTermina() != 0) { terminToUpdate.setCenaTermina(termin.getCenaTermina()); }
+		if(termin.getCenaTermina() != null && termin.getCenaTermina() != 0) { terminToUpdate.setCenaTermina(termin.getCenaTermina()); }
 		if(termin.getPocetakTermina() != null) { terminToUpdate.setPocetakTermina(termin.getPocetakTermina()); }
 		if(termin.getKrajTermina() != null) { terminToUpdate.setKrajTermina(termin.getKrajTermina()); }
 		if(termin.getTrajanjeTermina() != 0) { terminToUpdate.setTrajanjeTermina(termin.getTrajanjeTermina()); }
