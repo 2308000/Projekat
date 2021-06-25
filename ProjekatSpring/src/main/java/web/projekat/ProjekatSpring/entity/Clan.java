@@ -47,10 +47,10 @@ public class Clan implements Serializable {
             inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
     private Set<Termin> odradjeniTermini = new HashSet<>();
     @ManyToMany
-    @JoinTable(name = "neodradjeni_termini",
+    @JoinTable(name = "ocenjeni_termini",
             joinColumns = @JoinColumn(name = "clan_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "termin_id", referencedColumnName = "id"))
-    private Set<Termin> neodradjeniTermini = new HashSet<>();
+    private Set<Termin> ocenjeniTermini = new HashSet<>();
     
 	public Clan() {
 		
@@ -160,13 +160,20 @@ public class Clan implements Serializable {
 		this.odradjeniTermini = odradjeniTermini;
 	}
 
-	public Set<Termin> getNeodradjeniTermini() {
-		return neodradjeniTermini;
+	public Set<Termin> getOcenjeniTermini() {
+		return ocenjeniTermini;
 	}
 
-	public void setNeodradjeniTermini(Set<Termin> neodradjeniTermini) {
-		this.neodradjeniTermini = neodradjeniTermini;
+
+	public void setOcenjeniTermini(Set<Termin> ocenjeniTermini) {
+		this.ocenjeniTermini = ocenjeniTermini;
 	}
+
+
+	public Boolean getActive() {
+		return active;
+	}
+
 
 	public String getUloga() {
 		return uloga;

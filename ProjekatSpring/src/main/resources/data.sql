@@ -39,20 +39,19 @@ INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-15 11:00:00', '2021-05-15 12:30:00', '90', '300', 1, 2, 2); 
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-16 13:00:00', '2021-05-16 14:30:00', '90', '500', 2, 1, 2);
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2021-05-17 18:00:00', '2021-05-17 19:30:00', '90', '400', 3, 1, 2);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-15 10:00:00', '2022-05-15 11:00:00', '60', '300', 1, 1, 1); 
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-16 14:00:00', '2022-05-16 15:00:00', '60', '500', 2, 1, 1);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-17 19:00:00', '2022-05-17 20:00:00', '60', '400', 3, 1, 1);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-15 12:00:00', '2022-05-15 13:00:00', '60', '1000', 1, 2, 1); 
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-16 15:00:00', '2022-05-16 16:30:00', '90', '500', 2, 2, 1);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-17 19:00:00', '2022-05-17 20:30:00', '90', '1100', 3, 2, 2);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-15 11:00:00', '2022-05-15 12:30:00', '90', '300', 1, 2, 2); 
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-16 13:00:00', '2022-05-16 14:30:00', '90', '500', 2, 1, 2);
+INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-17 18:00:00', '2022-05-17 19:30:00', '90', '400', 3, 1, 2);
 
 INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('8.0', 1, 1);
 INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('9.0', 2, 2);
 INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('8.8', 3, 3);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('7.7', 4, 1);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('9.9', 5, 2);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('6.6', 6, 3);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('7.7', 7, 1);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('8.8', 8, 2);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('9.9', 9, 3);
-
-INSERT INTO NEODRADJENI_TERMINI(termin_id, clan_id) VALUES (1, 3);
-INSERT INTO NEODRADJENI_TERMINI(termin_id, clan_id) VALUES (2, 1);
-INSERT INTO NEODRADJENI_TERMINI(termin_id, clan_id) VALUES (3, 2);
 
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (1, 1);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (2, 2);
@@ -63,3 +62,15 @@ INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (6, 3);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (7, 1);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (8, 2);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (9, 3);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (10, 3);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (11, 1);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (12, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (13, 3);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (14, 1);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (15, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (16, 3);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (17, 1);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (18, 2);
+
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (3, 3);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (6, 3);

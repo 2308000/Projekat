@@ -2,6 +2,9 @@ package web.projekat.ProjekatSpring.entity.DTO;
 
 import java.util.Date;
 
+import web.projekat.ProjekatSpring.entity.Clan;
+import web.projekat.ProjekatSpring.entity.Termin;
+
 public class TerminDTO {
 	private Long id;
 	private Date pocetakTermina;
@@ -15,7 +18,18 @@ public class TerminDTO {
 	private Long centarID;
 	private Long salaID;
 	private Long trenerID;
+	private Long clanID;
+	private Iterable<Termin> odradjeni;
+	private Iterable<Clan> clanovi;
 	
+	
+	public TerminDTO(String zastita, Iterable<Termin> odradjeni, Iterable<Clan> clanovi) {
+		super();
+		this.zastita = zastita;
+		this.odradjeni = odradjeni;
+		this.clanovi = clanovi;
+	}
+
 	public TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
 			String nazivTreninga, String opisTreninga, String tipTreninga) {
 		super();
@@ -175,4 +189,29 @@ public class TerminDTO {
 	public void setTipTreninga(String tipTreninga) {
 		this.tipTreninga = tipTreninga;
 	}
+
+	public Long getClanID() {
+		return clanID;
+	}
+
+	public void setClanID(Long clanID) {
+		this.clanID = clanID;
+	}
+
+	public Iterable<Termin> getOdradjeni() {
+		return odradjeni;
+	}
+
+	public void setOdradjeni(Iterable<Termin> odradjeni) {
+		this.odradjeni = odradjeni;
+	}
+
+	public Iterable<Clan> getClanovi() {
+		return clanovi;
+	}
+
+	public void setClanovi(Iterable<Clan> clanovi) {
+		this.clanovi = clanovi;
+	}
+	
 }

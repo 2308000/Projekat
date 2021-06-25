@@ -2,18 +2,22 @@
 <html>
     <head>
         <meta charset="UTF-8">
-        <title>Izmena termina</title>
+        <title>Ocenjeni termini</title>
         <link rel="stylesheet" href="../styles.css">
         <script src="../js/jquery-3.6.0.min.js"></script>
-        <script src="../js/izmena-termina.js"></script>
+        <script src="../js/ocenjeni.js"></script>
     </head>
     <body style="color: white;">
             <div class="center" id="container">
-                <div id="navigation-bar-reg">
-                    <a href="termin.html">Pregled termina</a>
-                    <a href="dodavanje-termina.html">Dodavanje termina</a>
-                    <a href="izmena-termina.html">Izmena termina</a>
-                </div>                  
+                <div id="navigation-bar-reg" class="center">
+                    <span><a href="termin.html">Pregled termina</a> </span>
+                    <span><a href="prijava-na-termin.html">Prijava na termin</a> </span>
+                    <span><a href="prijavljeni.html">Prijavljeni treninzi</a></span>
+                    <span><a href="odradjeni.html">Odradjeni treninzi</a></span>
+                    <span><a href="neocenjeni.html">Neocenjeni treninzi</a></span>
+                    <span><a href="ocenjeni.html">Ocenjeni treninzi</a></span>
+                    <span><a href="#">Profil</a></span>
+                </div>                
             </div>
             
             <table id = "termini">
@@ -29,7 +33,6 @@
                     <th style="cursor: pointer;">Kraj termina</th>
                     <th style="cursor: pointer;">Trajanje termina</th>
                     <th style="cursor: pointer;">Cena termina</th>
-                    <th>Izmeni</th>
                 </tr>
             </table>
             <span><a id="log" href="../index.html"><button style="position: absolute; top: 15px; right: 15px;" class="button1" onclick="logout()">LOG OUT</a></span>

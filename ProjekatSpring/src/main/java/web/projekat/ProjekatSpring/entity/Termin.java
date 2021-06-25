@@ -38,10 +38,10 @@ public class Termin implements Serializable {
     @ManyToMany(mappedBy = "odradjeniTermini")
     private Set<Clan> clanoviOdradjenih = new HashSet<>();
     
-    @ManyToMany(mappedBy = "neodradjeniTermini")
-    private Set<Clan> clanoviNeodradjenih = new HashSet<>();
-    
-    
+    @ManyToMany(mappedBy = "ocenjeniTermini")
+    private Set<Clan> clanoviOcenjenih = new HashSet<>();
+
+
 	public Termin(Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina) {
 		super();
 		this.pocetakTermina = pocetakTermina;
@@ -159,11 +159,14 @@ public class Termin implements Serializable {
 		this.clanoviOdradjenih = clanoviOdradjenih;
 	}
 
-	public Set<Clan> getClanoviNeodradjenih() {
-		return clanoviNeodradjenih;
+
+	public Set<Clan> getClanoviOcenjenih() {
+		return clanoviOcenjenih;
 	}
 
-	public void setClanoviNeodradjenih(Set<Clan> clanoviNeodradjenih) {
-		this.clanoviNeodradjenih = clanoviNeodradjenih;
+
+	public void setClanoviOcenjenih(Set<Clan> clanoviOcenjenih) {
+		this.clanoviOcenjenih = clanoviOcenjenih;
 	}
+	
 }

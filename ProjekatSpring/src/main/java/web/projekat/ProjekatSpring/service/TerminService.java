@@ -130,4 +130,8 @@ public class TerminService {
         return this.terminRepository.save(terminToUpdate);
     }
     
+    public Iterable<Termin> saveOdradjeni(Set<Termin> odradjeni) {
+        return this.terminRepository.saveAll(odradjeni);
+    }
+    
 }
