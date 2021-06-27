@@ -20,6 +20,14 @@ public class Ocena implements Serializable {
 	@ManyToOne(fetch = FetchType.EAGER)
     private Clan clan;
 
+	
+	public Ocena(Double ocena, Termin termin, Clan clan) {
+		super();
+		this.ocena = ocena;
+		this.termin = termin;
+		this.clan = clan;
+	}
+
 	public Ocena() {
 		
 	}

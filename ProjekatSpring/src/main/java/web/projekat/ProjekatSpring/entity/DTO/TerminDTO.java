@@ -19,17 +19,11 @@ public class TerminDTO {
 	private Long salaID;
 	private Long trenerID;
 	private Long clanID;
-	private Iterable<Termin> odradjeni;
-	private Iterable<Clan> clanovi;
+	private String korisnickoIme;
+	private String ime;
+	private String prezime;
+	private double ocena; 
 	
-	
-	public TerminDTO(String zastita, Iterable<Termin> odradjeni, Iterable<Clan> clanovi) {
-		super();
-		this.zastita = zastita;
-		this.odradjeni = odradjeni;
-		this.clanovi = clanovi;
-	}
-
 	public TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
 			String nazivTreninga, String opisTreninga, String tipTreninga) {
 		super();
@@ -42,7 +36,7 @@ public class TerminDTO {
 		this.opisTreninga = opisTreninga;
 		this.tipTreninga = tipTreninga;
 	}
-
+	
 	public TerminDTO(Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
 			String nazivTreninga, String opisTreninga, String tipTreninga, String zastita) {
 		super();
@@ -83,6 +77,74 @@ public class TerminDTO {
 		this.zastita = zastita;
 		this.centarID = centarID;
 		this.salaID = salaID;
+	}
+
+	
+	public TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+			String zastita, Long clanID, String korisnickoIme, String ime, String prezime) {
+		super();
+		this.id = id;
+		this.pocetakTermina = pocetakTermina;
+		this.krajTermina = krajTermina;
+		this.trajanjeTermina = trajanjeTermina;
+		this.cenaTermina = cenaTermina;
+		this.zastita = zastita;
+		this.clanID = clanID;
+		this.korisnickoIme = korisnickoIme;
+		this.ime = ime;
+		this.prezime = prezime;
+	}
+	
+	public TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+			double ocena, Long clanID, String korisnickoIme, String ime, String prezime) {
+		super();
+		this.id = id;
+		this.pocetakTermina = pocetakTermina;
+		this.krajTermina = krajTermina;
+		this.trajanjeTermina = trajanjeTermina;
+		this.cenaTermina = cenaTermina;
+		this.ocena = ocena;
+		this.clanID = clanID;
+		this.korisnickoIme = korisnickoIme;
+		this.ime = ime;
+		this.prezime = prezime;
+	}
+
+	public TerminDTO(String zastita) {
+		super();
+		this.zastita = zastita;
+	}
+
+	public double getOcena() {
+		return ocena;
+	}
+
+	public void setOcena(double ocena) {
+		this.ocena = ocena;
+	}
+
+	public String getKorisnickoIme() {
+		return korisnickoIme;
+	}
+
+	public void setKorisnickoIme(String korisnickoIme) {
+		this.korisnickoIme = korisnickoIme;
+	}
+
+	public String getIme() {
+		return ime;
+	}
+
+	public void setIme(String ime) {
+		this.ime = ime;
+	}
+
+	public String getPrezime() {
+		return prezime;
+	}
+
+	public void setPrezime(String prezime) {
+		this.prezime = prezime;
 	}
 
 	public TerminDTO(Long salaID) {
@@ -196,22 +258,6 @@ public class TerminDTO {
 
 	public void setClanID(Long clanID) {
 		this.clanID = clanID;
-	}
-
-	public Iterable<Termin> getOdradjeni() {
-		return odradjeni;
-	}
-
-	public void setOdradjeni(Iterable<Termin> odradjeni) {
-		this.odradjeni = odradjeni;
-	}
-
-	public Iterable<Clan> getClanovi() {
-		return clanovi;
-	}
-
-	public void setClanovi(Iterable<Clan> clanovi) {
-		this.clanovi = clanovi;
 	}
 	
 }

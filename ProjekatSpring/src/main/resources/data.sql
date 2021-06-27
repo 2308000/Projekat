@@ -49,9 +49,9 @@ INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-16 13:00:00', '2022-05-16 14:30:00', '90', '500', 2, 1, 2);
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-17 18:00:00', '2022-05-17 19:30:00', '90', '400', 3, 1, 2);
 
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('8.0', 1, 1);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('9.0', 2, 2);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('8.8', 3, 3);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('9.0', 3, 3);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('8.8', 6, 3);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('7.8', 2, 2);
 
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (1, 1);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (2, 2);

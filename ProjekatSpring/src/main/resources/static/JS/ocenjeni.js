@@ -44,7 +44,9 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
                 row += "<td class=\"newCell center\">" + temp1 + "</td>";         
                 row += "<td class=\"newCell center\">" + temp2 + "</td>";
                 row += "<td class=\"newCell center\">" + res[i].trajanjeTermina + "</td>";
-                row += "<td class=\"newCell center\">" + res[i].cenaTermina + "</td>";                              
+                row += "<td class=\"newCell center\">" + res[i].cenaTermina + "</td>";   
+                let oc = "<td class=\"newCell center\">" + res[i].ocena + "</td>";       
+                row += oc;                      
                 row += "</tr>";                                     
                 $('#termini').append(row);  
                 //console.log(res);                      

@@ -31,6 +31,7 @@ public class PrijavaDTO {
     private Trening trening;    
     private Trener trener; 
     private Sala sala; 
+    private String zastita;
     
 	public Long getId() {
 		return id;
@@ -99,20 +100,6 @@ public class PrijavaDTO {
 		this.active = active;
 	}
 	
-	public PrijavaDTO(Long clanID, String korisnickoIme, String ime, String prezime, String password, String email,
-			Date datumRodjenja, String telefon, String uloga, Boolean active) {
-		super();
-		this.clanID = clanID;
-		this.korisnickoIme = korisnickoIme;
-		this.ime = ime;
-		this.prezime = prezime;
-		this.password = password;
-		this.email = email;
-		this.datumRodjenja = datumRodjenja;
-		this.telefon = telefon;
-		this.uloga = uloga;
-		this.active = active;
-	}
 	public Date getPocetakTermina() {
 		return pocetakTermina;
 	}
@@ -155,10 +142,28 @@ public class PrijavaDTO {
 	public void setSala(Sala sala) {
 		this.sala = sala;
 	}
-	public PrijavaDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
-			Trening trening, Trener trener, Sala sala) {
+	
+	public String getZastita() {
+		return zastita;
+	}
+	public void setZastita(String zastita) {
+		this.zastita = zastita;
+	}
+	public PrijavaDTO(Long id, Long clanID, String korisnickoIme, String ime, String prezime, String password,
+			String email, Date datumRodjenja, String telefon, String uloga, Boolean active, Date pocetakTermina,
+			Date krajTermina, Integer trajanjeTermina, Integer cenaTermina, Trening trening, Trener trener, Sala sala, String zastita) {
 		super();
 		this.id = id;
+		this.clanID = clanID;
+		this.korisnickoIme = korisnickoIme;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.password = password;
+		this.email = email;
+		this.datumRodjenja = datumRodjenja;
+		this.telefon = telefon;
+		this.uloga = uloga;
+		this.active = active;
 		this.pocetakTermina = pocetakTermina;
 		this.krajTermina = krajTermina;
 		this.trajanjeTermina = trajanjeTermina;
@@ -166,7 +171,7 @@ public class PrijavaDTO {
 		this.trening = trening;
 		this.trener = trener;
 		this.sala = sala;
-		
+		this.zastita = zastita;
 	} 
 	
 	

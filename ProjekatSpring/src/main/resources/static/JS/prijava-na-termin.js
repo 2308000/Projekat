@@ -84,10 +84,10 @@ $(document).on('click', '#prijava', function () {            // kada je button (
         //data: JSON.stringify(trenerId),  
         success: function (res) {                               // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", res);
-            if(res === "pun") {
-                alert("Ovaj termin je popunjen!");
+            if(res.zastita !== "ok") {
+                alert("Termin je popunjen, prijava onemogućena!");
             } else {
-                alert("Prijava na trening je uspesna!");
+                alert("Prijava na termin je uspešna!");
             }
         },
         error: function (res) {                                // ova f-ja se izvršava posle neuspešnog zahteva

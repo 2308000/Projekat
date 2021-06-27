@@ -45,10 +45,17 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
                 row += "<td class=\"newCell center\">" + temp2 + "</td>";
                 row += "<td class=\"newCell center\">" + res[i].trajanjeTermina + "</td>";
                 row += "<td class=\"newCell center\">" + res[i].cenaTermina + "</td>"; 
-                let btn1 = "<button id = \"ocena\" class='button1' data-id=" + res[i].id + ">Oceni</button>"
+                let btn1 = "<button id = \"ocena\" name = 'ocena' class='button1' data-id=" + res[i].id + ">Oceni</button>"
                 row += "<td class=\"center\">" + btn1 + "</td>";                                
                 row += "</tr>";                                     
                 $('#termini').append(row);  
+
+                var prikazi = document.getElementById("unos");
+                $("#ocena").click(function(){
+                    console.log("kliknut");
+                    localStorage.setItem("id-termina", this.dataset.id);
+                    $(prikazi).show();
+                });
                 //console.log(res);                      
             }
         },
@@ -58,20 +65,31 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
     });
 });
 
-$(document).on('click', '#ocena', function () {            // kada je button (čija je klasa class = btnSeeMore) kliknut
+$(document).on('click', '#sbm', function () {            // kada je button (čija je klasa class = btnSeeMore) kliknut
     // this je referenca na HTML element koji predstavlja kliknuto dugme See More
     // dataset je kolekcija svih custom data atributa datog HTML elementa iz koje uzimamo id
     // više o data atributima na: https://css-tricks.com/a-complete-guide-to-data-attributes/
-    var id = this.dataset.id;
+    var id = localStorage.getItem("id-termina");
     let toHide = "#tempRed";
     toHide += id;
     let tableRow = $(toHide);
     tableRow.hide();
+    var sakrij = document.getElementById("unos");
+    $(sakrij).hide();
     var clanID = localStorage.getItem("id");
-
+    var ocena = $("#unos-ocene").val();
+    if(isNaN(ocena)) {
+        alert("Ocena mora biti broj!");
+        return false;
+    }
+    if(ocena === "") {
+        alert("Niste uneli ocenu!");
+        return false;
+    }
     var odjavljenTermin = {
         id,
-        clanID
+        clanID,
+        ocena
     }
     // nakon što korisnik klikne dugme See More dobavljaju se i prikazuju podaci o traženom zaposlenom
     console.log(odjavljenTermin);
@@ -84,7 +102,7 @@ $(document).on('click', '#ocena', function () {            // kada je button (č
         //data: JSON.stringify(trenerId),  
         success: function (res) {                               // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", res);
-            alert("Odjava termina je uspesna!");
+            alert("Termin je uspesno ocenjen!");
         },
         error: function (res) {                                // ova f-ja se izvršava posle neuspešnog zahteva
             console.log("ERROR:\n", res);

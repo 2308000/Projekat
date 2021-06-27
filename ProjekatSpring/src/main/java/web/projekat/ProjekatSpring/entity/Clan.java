@@ -182,5 +182,12 @@ public class Clan implements Serializable {
 	public void setUloga(String uloga) {
 		this.uloga = uloga;
 	}
+
+
+	@Override
+	public String toString() {
+		return "Clan: Korisnicko ime - " + korisnickoIme + "\n";
+	}
+	
 	
 }

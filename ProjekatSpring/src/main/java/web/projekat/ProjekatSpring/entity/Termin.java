@@ -168,5 +168,21 @@ public class Termin implements Serializable {
 	public void setClanoviOcenjenih(Set<Clan> clanoviOcenjenih) {
 		this.clanoviOcenjenih = clanoviOcenjenih;
 	}
+
+
+	@Override
+	public String toString() {
+		String retVal = "-";
+		
+		for(Clan clan : clanoviOdradjenih) {
+			retVal += clan.getKorisnickoIme() + "\n";
+		}
+		
+		return retVal;
+	}
+
+
+	
+	
 	
 }

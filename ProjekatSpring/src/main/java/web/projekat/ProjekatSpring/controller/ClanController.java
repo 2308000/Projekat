@@ -3,6 +3,7 @@ package web.projekat.ProjekatSpring.controller;
 import web.projekat.ProjekatSpring.entity.DTO.PrijavaDTO;
 import web.projekat.ProjekatSpring.entity.Clan;
 import web.projekat.ProjekatSpring.entity.FitnessCentar;
+import web.projekat.ProjekatSpring.entity.Ocena;
 import web.projekat.ProjekatSpring.entity.Sala;
 import web.projekat.ProjekatSpring.entity.Termin;
 import web.projekat.ProjekatSpring.entity.Trener;
@@ -10,6 +11,7 @@ import web.projekat.ProjekatSpring.entity.Trening;
 import web.projekat.ProjekatSpring.entity.DTO.TerminDTO;
 import web.projekat.ProjekatSpring.service.ClanService;
 import web.projekat.ProjekatSpring.service.FitnessCentarService;
+import web.projekat.ProjekatSpring.service.OcenaService;
 import web.projekat.ProjekatSpring.service.SalaService;
 import web.projekat.ProjekatSpring.service.TerminService;
 import web.projekat.ProjekatSpring.service.TrenerService;
@@ -25,16 +27,14 @@ import java.util.*;
 public class ClanController {
 
 	 private final TerminService terminService;
-	 private final FitnessCentarService fitnessCentarService;
-	 private final SalaService salaService;
 	 private final ClanService clanService;
+	 private final OcenaService ocenaService;
 	// constructor-based dependency injection
 	 @Autowired
-	 public ClanController(TerminService terminService, FitnessCentarService fitnessCentarService, SalaService salaService, ClanService clanService) {
+	 public ClanController(TerminService terminService, ClanService clanService, OcenaService ocenaService) {
 	    this.terminService = terminService;
-	    this.fitnessCentarService = fitnessCentarService;
-	    this.salaService = salaService;
 	    this.clanService = clanService;	    
+	    this.ocenaService = ocenaService;
      }
 	 
 	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -69,28 +69,35 @@ public class ClanController {
 	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
              produces = MediaType.APPLICATION_JSON_VALUE,
              value = "/prijavaTermina")
-	 public ResponseEntity<String> prijavaNaTermin(@RequestBody TerminDTO getDTO) throws Exception {
+	 public ResponseEntity<List<TerminDTO>> prijavaNaTermin(@RequestBody TerminDTO getDTO) throws Exception {
 		 Clan clan = this.clanService.findById(getDTO.getClanID());
-		 System.out.println("ID clana je " + getDTO.getClanID());
-		 System.out.println("Potvrda " + clan.getId());
+		 /*System.out.println("ID clana je " + getDTO.getClanID());
+		 System.out.println("Potvrda " + clan.getId());*/
 		 Set<Termin> odradjeni = clan.getOdradjeniTermini();
 		 Termin noviTermin = this.terminService.findOne(getDTO.getId());
-		 System.out.println("ID termina je " + getDTO.getId());
-		 System.out.println("Potvrda " + noviTermin.getId());
+		 /*System.out.println("ID termina je " + getDTO.getId());
+		 System.out.println("Potvrda " + noviTermin.getId());*/
 		 Set<Clan> clanovi = noviTermin.getClanoviOdradjenih();
 		 Sala sala = noviTermin.getSala();
+		 List<TerminDTO> retDTOS = new ArrayList<>();
+		 System.out.println(odradjeni);
+		 System.out.println("Broj članova termina je " + clanovi.size());
+		 System.out.println("Kapacitet sale je " + sala.getKapacitet());
 		 if(clanovi.size() < sala.getKapacitet()) {
-			 System.out.println("stigao");
+			 /*TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+			String zastita, Long clanID, Long korisnickoIme, Long ime, Long prezime)*/
+			 TerminDTO ret = new TerminDTO(noviTermin.getId(), noviTermin.getPocetakTermina(), noviTermin.getKrajTermina(), noviTermin.getTrajanjeTermina(),
+					 noviTermin.getCenaTermina(), "ok", clan.getId(), clan.getKorisnickoIme(), clan.getIme(), clan.getPrezime());
+			 //System.out.println("stigao");
 			 clanovi.add(clan);
 			 odradjeni.add(noviTermin);
-			 System.out.println("dodao");
-			 /*Iterable<Termin> res1 = this.terminService.saveOdradjeni(odradjeni);
-			 Iterable<Clan> res2 = this.clanService.saveClanovi(clanovi);
-			 TerminDTO prijavaTermina = new TerminDTO("ok", res1, res2);*/
-			 return new ResponseEntity<>(clan.getKorisnickoIme(), HttpStatus.OK);		
+			 System.out.println(odradjeni);
+			 //System.out.println("dodao");
+			 retDTOS.add(ret);
+			 return new ResponseEntity<>(retDTOS, HttpStatus.OK);		
 		 }
-		 //TerminDTO prijavaTermina = new TerminDTO("pun", odradjeni, clanovi);
-		 return new ResponseEntity<>("pun", HttpStatus.OK);		 
+		 
+		 return new ResponseEntity<>(retDTOS, HttpStatus.OK);		 
 	 }
 	 
 	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -155,11 +162,11 @@ public class ClanController {
 
 	     return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
 	 }
-	 //NE RADI, PROBAJ SAVE ILI UPDATE DODATI
+	 //NE RADI, PODACI U BAZI SE NE MIJENJAJU
 	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
              produces = MediaType.APPLICATION_JSON_VALUE,
              value = "/odjavaTermina")
-	 public ResponseEntity<String> odjavaTermina(@RequestBody TerminDTO getDTO) throws Exception {
+	 public ResponseEntity<TerminDTO> odjavaTermina(@RequestBody TerminDTO getDTO) throws Exception {
 		 Clan clan = this.clanService.findById(getDTO.getClanID());
 		 /*System.out.println("ID clana je " + getDTO.getClanID());
 		 System.out.println("Potvrda " + clan.getId());*/
@@ -172,10 +179,12 @@ public class ClanController {
 		 clanovi.remove(clan);
 		 odradjeni.remove(odjavaTermina);
 		 System.out.println("uklonio");
+		 TerminDTO ret = new TerminDTO(odjavaTermina.getId(), odjavaTermina.getPocetakTermina(), odjavaTermina.getKrajTermina(), 
+				 odjavaTermina.getTrajanjeTermina(), odjavaTermina.getCenaTermina(), "ok", clan.getId(), clan.getKorisnickoIme(), clan.getIme(), clan.getPrezime());
 		 /*Iterable<Termin> res1 = this.terminService.saveOdradjeni(odradjeni);
 		 Iterable<Clan> res2 = this.clanService.saveClanovi(clanovi);
 		 TerminDTO prijavaTermina = new TerminDTO("ok", res1, res2);*/
-		 return new ResponseEntity<>(clan.getKorisnickoIme(), HttpStatus.OK);	 
+		 return new ResponseEntity<>(ret, HttpStatus.OK);	 
 	 }
 	 
 	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -185,6 +194,7 @@ public class ClanController {
 		 //System.out.println(id);
 		 List<Termin> terminList = this.terminService.findAll();
 		 List<TerminDTO> terminDTOS = new ArrayList<>();
+		 List<Ocena> ocene = this.ocenaService.findAll();
 		 if(getDTO.getClanID() == null) {
 			 return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
 		 }
@@ -193,14 +203,20 @@ public class ClanController {
 	     if(getDTO.getZastita() == null && !getDTO.getZastita().equals("clan")) {
 	    	 return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
 	     }
-	     
-	     
+	
 	     for (Termin termin : terminList) {
 	    	 if(clan.getOcenjeniTermini().contains(termin)) {
+	    		 double vrOcene = 0.0;
+	    		 for(Ocena ocena : ocene) {    			 
+	    	    	 if(ocena.getTermin().getId() == termin.getId()) {
+	    	    		 vrOcene = ocena.getOcena();
+	    	    	 }
+	    	     }
+	    	    	 
 	    		 //System.out.println("Datum održavanja termina je " + termin.getPocetakTermina().after(compare));
-	    		 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
-	    				 termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina(), termin.getTrening().getNazivTreninga(),
-	    				 termin.getTrening().getOpis(), termin.getTrening().getTip());
+	    		 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(), termin.getKrajTermina(), 
+	    				 termin.getTrajanjeTermina(), termin.getCenaTermina(), vrOcene, clan.getId(), clan.getKorisnickoIme(),
+	    				 clan.getIme(), clan.getPrezime());
 	    	 	 terminDTOS.add(terminDTO);
 	    	 }
 	     }
@@ -238,5 +254,28 @@ public class ClanController {
 	     }
 
 	     return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
+	 }
+	 
+	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+             produces = MediaType.APPLICATION_JSON_VALUE,
+             value = "/ocenaTermina")
+	 public ResponseEntity<TerminDTO> ocenaTermina(@RequestBody TerminDTO getDTO) throws Exception {
+		 Clan clan = this.clanService.findById(getDTO.getClanID());
+		 Set<Termin> ocenjeni = clan.getOcenjeniTermini();
+		 Termin ocenjeniTermin = this.terminService.findOne(getDTO.getId());
+		 Set<Clan> clanovi = ocenjeniTermin.getClanoviOcenjenih();
+		 Ocena ocena = new Ocena(getDTO.getOcena(), ocenjeniTermin, clan);
+		 List<Ocena> ocene = this.ocenaService.findAll(); 
+		 System.out.println("stigao");
+		 ocenjeni.add(ocenjeniTermin);
+		 clanovi.add(clan);
+		 ocene.add(ocena);
+		 System.out.println("dodao");
+		 /*TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+					double ocena, Long clanID, String korisnickoIme, String ime, String prezime)*/
+		 TerminDTO terminDTO = new TerminDTO(ocenjeniTermin.getId(), ocenjeniTermin.getPocetakTermina(), ocenjeniTermin.getKrajTermina(), 
+				 ocenjeniTermin.getTrajanjeTermina(), ocenjeniTermin.getCenaTermina(), ocena.getOcena(), clan.getId(), clan.getKorisnickoIme(),
+				 clan.getIme(), clan.getPrezime());
+		 return new ResponseEntity<>(terminDTO, HttpStatus.OK);	 
 	 }
 }
