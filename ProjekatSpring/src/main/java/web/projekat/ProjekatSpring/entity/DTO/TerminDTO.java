@@ -110,9 +110,19 @@ public class TerminDTO {
 		this.prezime = prezime;
 	}
 
-	public TerminDTO(String zastita) {
+	public TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
+			String nazivTreninga, String opisTreninga, String tipTreninga, Long clanID, double ocena) {
 		super();
-		this.zastita = zastita;
+		this.id = id;
+		this.pocetakTermina = pocetakTermina;
+		this.krajTermina = krajTermina;
+		this.trajanjeTermina = trajanjeTermina;
+		this.cenaTermina = cenaTermina;
+		this.nazivTreninga = nazivTreninga;
+		this.opisTreninga = opisTreninga;
+		this.tipTreninga = tipTreninga;
+		this.clanID = clanID;
+		this.ocena = ocena;
 	}
 
 	public double getOcena() {

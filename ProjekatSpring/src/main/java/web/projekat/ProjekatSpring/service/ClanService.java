@@ -23,7 +23,12 @@ public class ClanService {
         return this.clanRepository.getOne(id);
     }
 	
-	public Iterable<Clan> saveClanovi(Set<Clan> clanovi) {
-		return this.clanRepository.saveAll(clanovi);
+	public Clan update(Clan clan) {
+		Clan clanToUpdate = this.clanRepository.getOne(clan.getId());
+		
+		if(clan.getOcene() != null) clanToUpdate.setOcene(clan.getOcene());
+		if(clan.getOcenjeniTermini() != null) clanToUpdate.setOcenjeniTermini(clan.getOcenjeniTermini());
+        
+        return this.clanRepository.save(clanToUpdate);
 	}
 }

@@ -68,10 +68,11 @@ $(document).on('click', '#prijava', function () {            // kada je button (
     let tableRow = $(toHide);
     tableRow.hide();
     var clanID = localStorage.getItem("id");
-
+    var zastita = localStorage.getItem("role");
     var prijavljenTermin = {
         id,
-        clanID
+        clanID,
+        zastita
     }
     // nakon što korisnik klikne dugme See More dobavljaju se i prikazuju podaci o traženom zaposlenom
     console.log(prijavljenTermin);
@@ -84,10 +85,12 @@ $(document).on('click', '#prijava', function () {            // kada je button (
         //data: JSON.stringify(trenerId),  
         success: function (res) {                               // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", res);
-            if(res.zastita !== "ok") {
-                alert("Termin je popunjen, prijava onemogućena!");
+            if(res.zastita === "denied") {
+                alert("Morate biti član da biste se prijavili termin!");
+            } else if(res.zastita === "ok") {
+                alert("Uspješno ste se prijavila na termin!");
             } else {
-                alert("Prijava na termin je uspešna!");
+                alert("Prijava neuspješna!");
             }
         },
         error: function (res) {                                // ova f-ja se izvršava posle neuspešnog zahteva

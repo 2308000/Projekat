@@ -56,6 +56,7 @@ INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('7.8', 2, 2);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (1, 1);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (2, 2);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (3, 3);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (1, 3);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (4, 1);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (5, 2);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (6, 3);

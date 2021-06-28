@@ -48,6 +48,20 @@ public class RegistrationController {
         return new ResponseEntity<>(registrationDTOS, HttpStatus.OK);	
 	}
 	 
+	@PostMapping(produces = MediaType.APPLICATION_JSON_VALUE, value = "/centarID1")
+    public ResponseEntity<List<RegistrationDTO>> getCenterID1s(@RequestBody RegistrationDTO registrationDTO) {
+
+        List<FitnessCentar> listaCentara = this.registrationService.findAllCenters();     
+        List<RegistrationDTO> registrationDTOS = new ArrayList<>();    
+        
+        for (FitnessCentar centar : listaCentara) {
+        	if(!centar.isObrisan()) {     		
+	        	RegistrationDTO registrationDTO2 = new RegistrationDTO(centar.getId());
+	        	registrationDTOS.add(registrationDTO2);   
+        	}
+        }
+        return new ResponseEntity<>(registrationDTOS, HttpStatus.OK);	
+	}
 	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 	            produces = MediaType.APPLICATION_JSON_VALUE, value = "/trener")
 	    public ResponseEntity<RegistrationDTO> createTrainer(@RequestBody RegistrationDTO registrationDTO) throws Exception {
@@ -59,7 +73,7 @@ public class RegistrationController {
 	        		registrationDTO.getTelefon(), registrationDTO.getUloga(), registrationDTO.isActive(), false, fitnessCentar);
 	        /*Trener(String korisnickoIme, String ime, String prezime, String password, String email,
 			Date datumRodjenja, String telefon, String uloga, boolean active)*/
-	        
+	        //System.out.println("ID trenera je " + trener.getId());
 	        List<Trener> treneri = registrationService.findAllTrainers();
 	        List<Clan> clanovi = registrationService.findAllMembers();
 	        List<Administrator> admini = registrationService.findAllAdmins();
@@ -236,7 +250,7 @@ public class RegistrationController {
 	        		registrationDTO.getTelefon(), registrationDTO.getUloga(), registrationDTO.isActive(), false, fitnessCentar);
 	        /*Trener(String korisnickoIme, String ime, String prezime, String password, String email,
 			Date datumRodjenja, String telefon, String uloga, boolean active)*/
-	        
+	        //System.out.println("ID trenera je " + trener.getId());
 	        List<Trener> treneri = registrationService.findAllTrainers();
 	        List<Clan> clanovi = registrationService.findAllMembers();
 	        List<Administrator> admini = registrationService.findAllAdmins();
@@ -312,9 +326,7 @@ public class RegistrationController {
 	        		return new ResponseEntity<>(newRegistrationDTO, HttpStatus.CREATED);
 	        	}
 	        }
-	        
 	        Trener noviTrener = registrationService.create(trener);
-	        
 	        RegistrationDTO newRegistrationDTO = new RegistrationDTO(noviTrener.getKorisnickoIme(), noviTrener.getIme(), noviTrener.getPrezime(), 
 	        		noviTrener.getPassword(), noviTrener.getEmail(), noviTrener.getDatumRodjenja(), 
 	        		noviTrener.getTelefon(), noviTrener.getUloga(), noviTrener.getActive(), noviTrener.getFitnessCentar().getId());	

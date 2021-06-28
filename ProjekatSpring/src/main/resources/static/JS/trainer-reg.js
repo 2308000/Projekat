@@ -20,7 +20,7 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
 
     $.ajax({
         type: "POST",                                              
-        url: "http://localhost:8080/api/registracija/centarID",                 
+        url: "http://localhost:8080/api/registracija/centarID1",                 
         dataType: "json",
         contentType: "application/json",                            
         data: JSON.stringify(zastita),                                          

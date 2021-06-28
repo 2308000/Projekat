@@ -50,12 +50,12 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
                 row += "</tr>";                                     
                 $('#termini').append(row);  
 
-                var prikazi = document.getElementById("unos");
+                /*var prikazi = document.getElementById("unos");
                 $("#ocena").click(function(){
                     console.log("kliknut");
                     localStorage.setItem("id-termina", this.dataset.id);
                     $(prikazi).show();
-                });
+                });*/
                 //console.log(res);                      
             }
         },
@@ -63,6 +63,13 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
             console.log("ERROR:\n", res);
         }
     });
+});
+
+$(document).on('click', '#ocena', function () {            
+    console.log("kliknut");
+    var prikazi = document.getElementById("unos");
+    localStorage.setItem("id-termina", this.dataset.id);
+    $(prikazi).show();
 });
 
 $(document).on('click', '#sbm', function () {            // kada je button (čija je klasa class = btnSeeMore) kliknut
@@ -86,10 +93,12 @@ $(document).on('click', '#sbm', function () {            // kada je button (čij
         alert("Niste uneli ocenu!");
         return false;
     }
+    var zastita = localStorage.getItem("role");
     var odjavljenTermin = {
         id,
         clanID,
-        ocena
+        ocena, 
+        zastita
     }
     // nakon što korisnik klikne dugme See More dobavljaju se i prikazuju podaci o traženom zaposlenom
     console.log(odjavljenTermin);
@@ -102,7 +111,11 @@ $(document).on('click', '#sbm', function () {            // kada je button (čij
         //data: JSON.stringify(trenerId),  
         success: function (res) {                               // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", res);
-            alert("Termin je uspesno ocenjen!");
+            if(res.zastita === "denied") {
+                alert("Morate biti član da biste ocijenili termin!");
+            } else {
+                alert("Termin uspješno ocijenjen!");
+            }
         },
         error: function (res) {                                // ova f-ja se izvršava posle neuspešnog zahteva
             console.log("ERROR:\n", res);

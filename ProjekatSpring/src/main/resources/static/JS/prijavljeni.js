@@ -68,10 +68,11 @@ $(document).on('click', '#odjava', function () {            // kada je button (�
     let tableRow = $(toHide);
     tableRow.hide();
     var clanID = localStorage.getItem("id");
-
+    var zastita = localStorage.getItem("role");
     var odjavljenTermin = {
         id,
-        clanID
+        clanID,
+        zastita
     }
     // nakon što korisnik klikne dugme See More dobavljaju se i prikazuju podaci o traženom zaposlenom
     console.log(odjavljenTermin);
@@ -84,7 +85,13 @@ $(document).on('click', '#odjava', function () {            // kada je button (�
         //data: JSON.stringify(trenerId),  
         success: function (res) {                               // ova f-ja se izvršava posle uspešnog zahteva
             console.log("SUCCESS:\n", res);
-            alert("Odjava termina je uspesna!");
+            if(res.zastita === "denied") {
+                alert("Morate biti član da biste odjavili termin!");
+            } else if(res.zastita === "ok") {
+                alert("Termin uspješno odjavljen!");
+            } else {
+                alert("Odjava neuspješna!");
+            }
         },
         error: function (res) {                                // ova f-ja se izvršava posle neuspešnog zahteva
             console.log("ERROR:\n", res);
