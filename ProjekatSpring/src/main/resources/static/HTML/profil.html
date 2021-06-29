@@ -4,33 +4,58 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../style2.css">
+    <link rel="stylesheet" href="../styles.css">
     <script src="../js/jquery-3.6.0.min.js"></script>
     <script src="../js/profil.js"></script>
     <title>Vaš profil</title>
 </head>
 <body>
-    <div id="navigation-bar-log" class="center">
+    <div id="navigation-bar-reg" class="center">
         <span><a href="terminclan.html">Pregled termina</a> </span>
         <span><a href="prijava-na-termin.html">Prijava na termin</a> </span>
         <span><a href="prijavljeni.html">Prijavljeni treninzi</a></span>
         <span><a href="odradjeni.html">Odradjeni treninzi</a></span>
         <span><a href="neocenjeni.html">Neocenjeni treninzi</a></span>
         <span><a href="ocenjeni.html">Ocenjeni treninzi</a></span>
-        <span><a href="#">Profil</a></span>
+        <span><a href="profil.html">Profil</a></span>
     </div>
 
-    <div class="card">
-        <div class="card-content">
-            <h2 class="card-title">Informacije o članu</h2>
-            <p class="card-body">Korisnicko ime: WooxGG</p>
-            <p class="card-body">Uloga: Administrator</p>
-            <p class="card-body">Email: nikolavukic333@gmail.com</p>
-            <p class="card-body">Broj telefona: 0665762600</p>
-            <button class="button">Više informacija</button>
-        </div>
-    </div>
+    <table id="termini" style="border: none; margin-top: 2em; width: 90%; margin-left: 5%; margin-right: 5%;">
+        <tr id = "id-clana">
+            <th>Clan ID: </th>
+        </tr>
+        <tr id = "user">
+            <th>Korisnicko ime: </th>
+        </tr>
+        <tr id = "ime">
+            <th>Ime clana: </th>
+        </tr>
+        <tr id = "prezime">
+            <th>Prezime clana: </th>
+        </tr>
+        <tr id = "pass">
+            <th>Lozinka: </th>
+        </tr>
+        <tr id = "email">
+            <th>Email adresa: </th>
+        </tr>
+        <tr id = "datumRodjenja">
+            <th>Datum rodjenja: </th>
+        </tr>
+        <tr id = "telefon">
+            <th>Broj telefona: </th>
+        </tr>
+        <tr id = "ocene">
+            <th>Ocene koje je dao clan: </th>
+        </tr>
+        <tr id = "odradjeni">
+            <th>Termini: </th>
+        </tr>
+        <tr id = "ocenjeni">
+            <th>Ocenenjeni termini: </th>
+        </tr>
+    </table>
 
-    <span><a id="log" href="../index.html"><button class="button1" onclick="logout()">LOG OUT</a></span>
+    <span><a id="log" href="../index.html"><button class="button1" style = "float:right;" onclick="logout()">LOG OUT</a></span>
 </body>
 </html>

@@ -232,3 +232,8 @@ function sortTableByNumbers(n) {
     }
   }
 }
+
+function logout() {
+  console.log("Logged out successfully!");
+  localStorage.setItem("role", "odjavljen");
+}

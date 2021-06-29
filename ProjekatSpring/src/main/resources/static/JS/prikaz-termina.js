@@ -48,3 +48,8 @@ $(document).ready(function () {    // Čeka se trenutak kada je DOM(Document Obj
         }
     });
 });
+
+function logout() {
+    console.log("Logged out successfully!");
+    localStorage.setItem("role", "odjavljen");
+}

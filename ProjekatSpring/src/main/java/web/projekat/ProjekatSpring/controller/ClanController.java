@@ -7,6 +7,7 @@ import web.projekat.ProjekatSpring.entity.Sala;
 import web.projekat.ProjekatSpring.entity.Termin;
 import web.projekat.ProjekatSpring.entity.Trener;
 import web.projekat.ProjekatSpring.entity.Trening;
+import web.projekat.ProjekatSpring.entity.DTO.ClanDTO;
 import web.projekat.ProjekatSpring.entity.DTO.TerminDTO;
 import web.projekat.ProjekatSpring.service.ClanService;
 import web.projekat.ProjekatSpring.service.FitnessCentarService;
@@ -360,5 +361,46 @@ public class ClanController {
 		 //System.out.println("Clanovi koji su odradili trening:\n" + termin.getClanoviOdradjenih());
 		 
 		 return new ResponseEntity<>(terminDTO, HttpStatus.OK);	 
+	 }
+	 
+	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+             produces = MediaType.APPLICATION_JSON_VALUE,
+             value = "/profil")
+	 public ResponseEntity<ClanDTO> prikazProfila(@RequestBody ClanDTO getDTO) throws Exception {
+		 
+		 ClanDTO clanDTO = new ClanDTO();
+		 if(getDTO.getId() == null) {
+			 return new ResponseEntity<>(clanDTO, HttpStatus.OK);
+		 }
+		 
+		 Clan clan = this.clanService.findById(getDTO.getId());
+		 List<Double> retOcene = new ArrayList<>();
+		 Set<Ocena> ocene = clan.getOcene();
+		 List<String> retOdradjeni = new ArrayList<>();
+		 Set<Termin> odradjeni = clan.getOdradjeniTermini();
+		 List<String> retOcenjeni = new ArrayList<>();
+		 Set<Termin> ocenjeni = clan.getOcenjeniTermini();
+		 
+		 if(getDTO.getZastita() == null || !getDTO.getZastita().equals("clan")) {
+			 return new ResponseEntity<>(clanDTO, HttpStatus.OK);	 
+		 }
+		 
+		 for(Ocena ocena : ocene) {
+			 retOcene.add(ocena.getOcena());
+		 }
+		 
+		 for(Termin termin : odradjeni) {
+			 retOdradjeni.add(termin.getTrening().getNazivTreninga());
+		 }
+		 for(Termin termin : ocenjeni) {
+			 retOcenjeni.add(termin.getTrening().getNazivTreninga());
+		 }
+		 /*ClanDTO(Long id, String korisnickoIme, String ime, String prezime, String password, String email,
+			Date datumRodjenja, String telefon, Boolean active, Set<Double> ocene, Set<String> odradjeniTermini,
+			Set<String> ocenjeniTermini, String zastita)*/
+		 ClanDTO clanDTO2 = new ClanDTO(clan.getId(), clan.getKorisnickoIme(), clan.getIme(), clan.getPrezime(), clan.getPassword(), clan.getEmail(),
+				 clan.getDatumRodjenja(), clan.getTelefon(), clan.getActive(), retOcene, retOdradjeni, retOcenjeni, "clan");
+		 
+		 return new ResponseEntity<>(clanDTO2, HttpStatus.OK);	 
 	 }
 }
