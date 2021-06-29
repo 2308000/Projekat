@@ -1,8 +1,10 @@
 package web.projekat.ProjekatSpring.entity.DTO;
 
-import java.util.Date;
+import java.io.Serializable;
+import java.util.*;
 
 import web.projekat.ProjekatSpring.entity.Clan;
+import web.projekat.ProjekatSpring.entity.Ocena;
 import web.projekat.ProjekatSpring.entity.Termin;
 
 public class TerminDTO {
@@ -23,6 +25,9 @@ public class TerminDTO {
 	private String ime;
 	private String prezime;
 	private double ocena; 
+	private String oznakaSale;
+	private List<Double> ocene = new ArrayList<>();
+	private List<String> clanoviTermina = new ArrayList<>();
 	
 	public TerminDTO(Long id, Date pocetakTermina, Date krajTermina, Integer trajanjeTermina, Integer cenaTermina,
 			String nazivTreninga, String opisTreninga, String tipTreninga) {
@@ -123,6 +128,51 @@ public class TerminDTO {
 		this.tipTreninga = tipTreninga;
 		this.clanID = clanID;
 		this.ocena = ocena;
+	}
+	
+	public TerminDTO(Long id, String zastita, String korisnickoIme, double ocena, String oznakaSale) {
+		super();
+		this.id = id;
+		this.zastita = zastita;
+		this.korisnickoIme = korisnickoIme;
+		this.ocena = ocena;
+		this.oznakaSale = oznakaSale;
+	}
+	
+	public TerminDTO(Long id, String zastita, String korisnickoIme, double ocena, String oznakaSale, List<Double> ocene, List<String> clanoviTermina) {
+		super();
+		this.id = id;
+		this.zastita = zastita;
+		this.korisnickoIme = korisnickoIme;
+		this.ocena = ocena;
+		this.oznakaSale = oznakaSale;
+		this.ocene = ocene;
+		this.ocene = ocene;
+		this.clanoviTermina = clanoviTermina;
+	}
+	
+	public List<Double> getOcene() {
+		return ocene;
+	}
+
+	public void setOcene(List<Double> ocene) {
+		this.ocene = ocene;
+	}
+
+	public List<String> getClanoviTermina() {
+		return clanoviTermina;
+	}
+
+	public void setClanoviTermina(List<String> clanoviTermina) {
+		this.clanoviTermina = clanoviTermina;
+	}
+
+	public String getOznakaSale() {
+		return oznakaSale;
+	}
+
+	public void setOznakaSale(String oznakaSale) {
+		this.oznakaSale = oznakaSale;
 	}
 
 	public double getOcena() {
@@ -269,5 +319,4 @@ public class TerminDTO {
 	public void setClanID(Long clanID) {
 		this.clanID = clanID;
 	}
-	
 }

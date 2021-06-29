@@ -12,8 +12,8 @@ INSERT INTO CLAN(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, 
 INSERT INTO CLAN(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active) VALUES ('Scaryride', 'Damir', 'Jasminovic', 'clan', 'damirjasminovic333@gmail.com', '2000-08-23', '066111112', 'clan', '1');
 INSERT INTO CLAN(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active) VALUES ('Namox', 'Damir', 'Jasminovic2', 'clan', 'djasminovic@gmail.com', '2003-04-02', '066111113', 'clan', '1');
 
-INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, obrisan, prosecna_ocena, fitness_centar_id) VALUES ('CarolynJ', 'Jasminko', 'Milosevic', 'pt', 'jasminkomilo@gmail.com', '1999-05-22', '066520123', 'trener', '1', '1', '9.0', 1);
-INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, obrisan, prosecna_ocena, fitness_centar_id) VALUES ('Woooox', 'Nikolina', 'Vukic', 'pt', 'nikovu@gmail.com', '1997-05-17', '066314215', 'trener', '1', '0', '8.0', 1);
+INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, obrisan, prosecna_ocena, fitness_centar_id) VALUES ('CarolynJ', 'Jasminko', 'Milosevic', 'pt', 'jasminkomilo@gmail.com', '1999-05-22', '066520123', 'trener', '1', '0', '7.4', 1);
+INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, obrisan, prosecna_ocena, fitness_centar_id) VALUES ('Woooox', 'Nikolina', 'Vukic', 'pt', 'nikovu@gmail.com', '1997-05-17', '066314215', 'trener', '1', '0', '8.2', 1);
 INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, obrisan, prosecna_ocena, fitness_centar_id) VALUES ('CarolynJO', 'Jasminako', 'Milosevic', 'pt', 'jasminkomilo1@gmail.com', '1999-05-22', '066520126', 'trener', '0', '0',  '0.0', 1);
 INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, obrisan, prosecna_ocena, fitness_centar_id) VALUES ('CarolynJON', 'Jasminbko', 'Milosevic', 'pt', 'jasminkomilo2@gmail.com', '1999-05-22', '066520127', 'trener', '0', '0',  '0.0', 1);
 INSERT INTO TRENER(korisnicko_ime, ime, prezime, password, email, datum_rodjenja, telefon, uloga, active, obrisan, prosecna_ocena, fitness_centar_id) VALUES ('Voooox', 'Nikolija', 'Vukic', 'pt', 'nikovu1@gmail.com', '1997-05-17', '0663142125', 'trener', '0', '0',  '0.0', 1);
@@ -49,19 +49,36 @@ INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-16 13:00:00', '2022-05-16 14:30:00', '90', '500', 2, 1, 2);
 INSERT INTO TERMIN(pocetak_termina, kraj_termina, trajanje_termina, cena_termina, trening_id, trener_id, sala_id) VALUES ('2022-05-17 18:00:00', '2022-05-17 19:30:00', '90', '400', 3, 1, 2);
 
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('9.0', 3, 3);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('8.8', 6, 3);
-INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES ('7.8', 2, 2);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (7.9, 1, 1);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (9.7, 3, 3);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (5.6, 4, 3);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (6.5, 5, 3);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (7.4, 6, 3);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (9.3, 7, 3);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (8.2, 8, 3);
+
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (7.7, 3, 2);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (4.6, 4, 2);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (5.5, 5, 2);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (6.4, 6, 2);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (8.3, 7, 2);
+INSERT INTO OCENA(ocena, termin_id, clan_id) VALUES (7.2, 8, 2);
 
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (1, 1);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (2, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (3, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (4, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (5, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (6, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (7, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (8, 2);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (3, 3);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (1, 3);
-INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (4, 1);
-INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (5, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (4, 3);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (5, 3);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (6, 3);
-INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (7, 1);
-INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (8, 2);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (7, 3);
+INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (8, 3);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (9, 3);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (10, 3);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (11, 1);
@@ -73,5 +90,18 @@ INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (16, 3);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (17, 1);
 INSERT INTO ODRADJENI_TERMINI(termin_id, clan_id) VALUES (18, 2);
 
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (1, 1);
 INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (3, 3);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (4, 3);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (5, 3);
 INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (6, 3);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (7, 3);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (8, 3);
+
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (2, 2);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (3, 2);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (4, 2);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (5, 2);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (6, 2);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (7, 2);
+INSERT INTO OCENJENI_TERMINI(termin_id, clan_id) VALUES (8, 2);

@@ -73,7 +73,7 @@ public class TerminService {
         }
         List<TerminDTO> datumi  = new ArrayList<>();
         for (TerminDTO termin : cene) {
-            if(termin.getKrajTermina().before(searchDTO.getDatum())) {
+            if(!termin.getKrajTermina().after(searchDTO.getDatum())) {
                 datumi.add(termin);
             }
         }

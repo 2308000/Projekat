@@ -1,6 +1,9 @@
 package web.projekat.ProjekatSpring.entity;
 
 import javax.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import java.util.*;
 import java.io.Serializable;
 
@@ -32,6 +35,7 @@ public class Termin implements Serializable {
     @ManyToOne(fetch = FetchType.EAGER)
     private Sala sala; 
     
+    @JsonIgnore 
     @OneToMany(mappedBy = "termin", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Ocena> ocene = new HashSet<>();
     

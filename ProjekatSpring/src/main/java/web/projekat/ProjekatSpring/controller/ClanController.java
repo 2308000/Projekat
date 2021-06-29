@@ -28,12 +28,14 @@ public class ClanController {
 	 private final TerminService terminService;
 	 private final ClanService clanService;
 	 private final OcenaService ocenaService;
+	 private final TrenerService trenerService;
 	// constructor-based dependency injection
 	 @Autowired
-	 public ClanController(TerminService terminService, ClanService clanService, OcenaService ocenaService) {
+	 public ClanController(TerminService terminService, ClanService clanService, OcenaService ocenaService, TrenerService trenerService) {
 	    this.terminService = terminService;
 	    this.clanService = clanService;	    
 	    this.ocenaService = ocenaService;
+	    this.trenerService = trenerService;
      }
 	 
 	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
@@ -277,6 +279,7 @@ public class ClanController {
 		 Set<Ocena> oceneClana = clan.getOcene();
 		 Set<Ocena> oceneTermina = ocenjeniTermin.getOcene();
 		 
+		 
 		 if(getDTO.getZastita() == null || !getDTO.getZastita().equals("clan")) {
 			 TerminDTO terminDTO = new TerminDTO(ocenjeniTermin.getId(), ocenjeniTermin.getPocetakTermina(), ocenjeniTermin.getKrajTermina(), 
 					 ocenjeniTermin.getTrajanjeTermina(), ocenjeniTermin.getCenaTermina(), "denied", clan.getId(), clan.getKorisnickoIme(),
@@ -299,6 +302,63 @@ public class ClanController {
 		 TerminDTO terminDTO = new TerminDTO(ocenjeniTermin.getId(), ocenjeniTermin.getPocetakTermina(), ocenjeniTermin.getKrajTermina(), 
 				 ocenjeniTermin.getTrajanjeTermina(), ocenjeniTermin.getCenaTermina(), ocena.getOcena(), clan.getId(), clan.getKorisnickoIme(),
 				 clan.getIme(), clan.getPrezime());
+		 Trener trener = ocenjeniTermin.getTrener();
+		 /*System.out.println("Trener koji drži termin je " + trener.getKorisnickoIme());
+		 System.out.println("Prosečna ocena pre ocenjivanja je " + trener.getProsecnaOcena());
+		 System.out.println("Dodijeljena ocjena je " + getDTO.getOcena());*/
+		 /*Trener(Long id, String korisnickoIme, String ime, String prezime, String password, String email,
+			Date datumRodjenja, String telefon, String uloga, Boolean active, Boolean obrisan, Double prosecnaOcena,
+			FitnessCentar fitnessCentar, Set<Termin> termini)*/
+		 Trener trenerToUpdate = new Trener(trener.getId(), trener.getKorisnickoIme(), trener.getIme(), trener.getPrezime(), trener.getPassword(),
+				 trener.getEmail(), trener.getDatumRodjenja(), trener.getTelefon(), trener.getUloga(), trener.getActive(), trener.getObrisan(),
+				 trener.getProsecnaOcena(), trener.getFitnessCentar(), trener.getTermini());
+		 trener = this.trenerService.updateAvgGrade(trenerToUpdate);
+		 //System.out.println("Prosečna ocena nakon ocenjivanja je " + trener.getProsecnaOcena());
+		 return new ResponseEntity<>(terminDTO, HttpStatus.OK);	 
+	 }
+	 
+	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+             produces = MediaType.APPLICATION_JSON_VALUE,
+             value = "/prikazTerminaDetaljno")
+	 public ResponseEntity<TerminDTO> prikazTermina(@RequestBody TerminDTO getDTO) throws Exception {
+		 Termin termin = this.terminService.findOne(getDTO.getId());
+		 /*TerminDTO(Long id, String zastita, String korisnickoIme, double ocena, String oznakaSale, Set<Ocena> ocene,
+					Set<Clan> clanoviOdradjenih)*/
+		 Trener trener = this.trenerService.findOne(termin.getTrener().getId());
+		 List<Double> retOcene = new ArrayList<>();
+		 Set<Ocena> ocene = termin.getOcene();
+		 
+		 for(Ocena ocena : ocene) {
+			 retOcene.add(ocena.getOcena());
+		 }
+		 
+		 List<String> retClanovi = new ArrayList<>();
+		 Set<Clan> clanovi = termin.getClanoviOdradjenih();
+		 
+		 for(Clan clan : clanovi) {
+			 retClanovi.add(clan.getKorisnickoIme());
+		 }
+		 
+		 System.out.println("Ime trenera: " + trener.getKorisnickoIme());
+		 if(termin.getOcene() == null) {
+			 System.out.println("Ocene su null");
+		 }
+		 TerminDTO terminDTO = new TerminDTO(termin.getId(), "denied", termin.getTrener().getKorisnickoIme(), termin.getTrener().getProsecnaOcena(),
+				 termin.getSala().getOznakaSale(), retOcene, retClanovi);
+		 
+		 if(getDTO.getZastita() == null || !getDTO.getZastita().equals("clan")) {
+			 return new ResponseEntity<>(terminDTO, HttpStatus.OK);
+		 }
+		 
+		 terminDTO.setZastita("ok");
+		 System.out.println("ID: " + terminDTO.getId());
+		 System.out.println("Zastita: " + terminDTO.getZastita());
+		 System.out.println("Korisnicko ime: " + terminDTO.getKorisnickoIme());
+		 System.out.println("Ocena trenera: " + termin.getTrener().getProsecnaOcena());
+		 System.out.println("Oznaka sale: " + termin.getSala().getOznakaSale());
+		 //System.out.println("Ocene: " + termin.getOcene());
+		 //System.out.println("Clanovi koji su odradili trening:\n" + termin.getClanoviOdradjenih());
+		 
 		 return new ResponseEntity<>(terminDTO, HttpStatus.OK);	 
 	 }
 }

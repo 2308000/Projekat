@@ -50,7 +50,27 @@ public class TerminController {
 
 	     return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
 	 }
-	 
+	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+             produces = MediaType.APPLICATION_JSON_VALUE,
+             value = "/clan")
+	 public ResponseEntity<List<TerminDTO>> getTerminForClan(@RequestBody TerminDTO getDTO) throws Exception {  
+	     List<Termin> terminList = this.terminService.findAll();
+
+	     List<TerminDTO> terminDTOS = new ArrayList<>();
+	     
+	     if(getDTO.getZastita() == null || !getDTO.getZastita().equals("clan")) {
+	    	 return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
+	     }
+	     
+	     for (Termin termin : terminList) {
+	    	 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
+	    		termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina(), termin.getTrening().getNazivTreninga(),
+	    		termin.getTrening().getOpis(), termin.getTrening().getTip());
+	    	 	terminDTOS.add(terminDTO);
+	     }
+
+	     return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
+	 }
 	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
              produces = MediaType.APPLICATION_JSON_VALUE,
              value = "/trener")
@@ -60,7 +80,7 @@ public class TerminController {
 		 Trener trener = this.trenerService.findOne(getDTO.getId());
 	     List<TerminDTO> terminDTOS = new ArrayList<>();
 
-	     if(!getDTO.getZastita().equals("trener")) {
+	     if(getDTO.getZastita() == null || !getDTO.getZastita().equals("trener")) {
 	    	 return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
 	     }
 	     for (Termin termin : terminList) {
@@ -79,6 +99,17 @@ public class TerminController {
              produces = MediaType.APPLICATION_JSON_VALUE,
              value = "/pretragaPoKriterijumu")
 	 public ResponseEntity<List<TerminDTO>> getTerminiByCriteria(@RequestBody SearchDTO getDTO) throws Exception {
+	     SearchDTO searchDTO = new SearchDTO(getDTO.isSve(), getDTO.getDatum(), getDTO.getCena(), getDTO.getNazivTreninga(), 
+	    		 getDTO.getOpisTreninga(), getDTO.getTipTreninga());
+	     List<TerminDTO> terminiList = this.terminService.findAllByCriteria(searchDTO);
+	     
+	     return new ResponseEntity<>(terminiList, HttpStatus.OK);
+	 }
+	 
+	 @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+             produces = MediaType.APPLICATION_JSON_VALUE,
+             value = "/pretragaPoKriterijumu/clan")
+	 public ResponseEntity<List<TerminDTO>> getTerminiByCriteriaForClan(@RequestBody SearchDTO getDTO) throws Exception {
 	     SearchDTO searchDTO = new SearchDTO(getDTO.isSve(), getDTO.getDatum(), getDTO.getCena(), getDTO.getNazivTreninga(), 
 	    		 getDTO.getOpisTreninga(), getDTO.getTipTreninga());
 	     List<TerminDTO> terminiList = this.terminService.findAllByCriteria(searchDTO);

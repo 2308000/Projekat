@@ -53,7 +53,6 @@ public class Trener implements Serializable {
 	public Trener() {
 		prosecnaOcena = 0.0;
 	}
-
 	
 	public Trener(String korisnickoIme, String ime, String prezime, String password, String email, Date datumRodjenja,
 			String telefon, String uloga, boolean active, boolean obrisan, FitnessCentar fitnessCentar) {
@@ -73,6 +72,26 @@ public class Trener implements Serializable {
 	}
 
 	
+	public Trener(Long id, String korisnickoIme, String ime, String prezime, String password, String email,
+			Date datumRodjenja, String telefon, String uloga, Boolean active, Boolean obrisan, Double prosecnaOcena,
+			FitnessCentar fitnessCentar, Set<Termin> termini) {
+		super();
+		this.id = id;
+		this.korisnickoIme = korisnickoIme;
+		this.ime = ime;
+		this.prezime = prezime;
+		this.password = password;
+		this.email = email;
+		this.datumRodjenja = datumRodjenja;
+		this.telefon = telefon;
+		this.uloga = uloga;
+		this.active = active;
+		this.obrisan = obrisan;
+		this.prosecnaOcena = prosecnaOcena;
+		this.fitnessCentar = fitnessCentar;
+		this.termini = termini;
+	}
+
 	public Boolean getObrisan() {
 		return obrisan;
 	}
