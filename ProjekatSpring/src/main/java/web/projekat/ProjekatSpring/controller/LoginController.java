@@ -45,6 +45,8 @@ public class LoginController {
         				loginDTO2.setError("Welcome " + loginDTO2.getKorisnickoIme() + "!");
         				return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
         			} else {
+        				loginDTO2.setUloga("odjavljen");
+        		        loginDTO2.setId((long) 0);
         				loginDTO2.setError("Password is incorrect!");
         				return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
         			}
@@ -63,6 +65,8 @@ public class LoginController {
 		        				loginDTO2.setError("Welcome " + loginDTO2.getKorisnickoIme() + "!");
 		        				return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
 		        			} else {
+		        				loginDTO2.setUloga("odjavljen");
+		        		        loginDTO2.setId((long) 0);
 		        				loginDTO2.setError("Password is incorrect!");
 		        				return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
 		        			}
@@ -72,11 +76,15 @@ public class LoginController {
 		            		loginDTO2.setError("Trener " + loginDTO2.getKorisnickoIme() + " je obrisan");
 		            		/*System.out.println(trener.getKorisnickoIme() + ", da li je obrisan? " + trener.getObrisan());
 		            		System.out.println("obrisan!\n");*/
+		            		loginDTO2.setUloga("odjavljen");
+		                    loginDTO2.setId((long) 0);
 		            		return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
 	        			}
 	            	}
 	        	} else {
 	        		if(trener.getKorisnickoIme().equalsIgnoreCase(loginDTO2.getKorisnickoIme())) {
+	        			loginDTO2.setUloga("odjavljen");
+	        	        loginDTO2.setId((long) 0);
 	        			loginDTO2.setError("Trener " + loginDTO2.getKorisnickoIme() + " jos nije prihvacen!");
 	        			return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
 	        		}        		
@@ -92,13 +100,14 @@ public class LoginController {
         				loginDTO2.setError("Welcome " + loginDTO2.getKorisnickoIme() + "!");
         				return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
         			} else {
+        				loginDTO2.setUloga("odjavljen");
+        		        loginDTO2.setId((long) 0);
         				loginDTO2.setError("Password is incorrect!");
         				return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
         			}
         		}
         	}
         }
-        
         loginDTO2.setError("Username does not exist!");
         return new ResponseEntity<>(loginDTO2, HttpStatus.OK);
     }

@@ -33,26 +33,35 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
         url: "http://localhost:8080/api/login",                 // URL na koji se šalju podaci
         dataType: "json",                                           // tip povratne vrednosti
         contentType: "application/json",                            // tip podataka koje šaljemo
-        data: JSON.stringify(Login),                          // u body-ju šaljemo novog zaposlenog (JSON.stringify() pretvara JavaScript objekat u JSON)
+        data: JSON.stringify(Login),                          
         success: function (res) {                                   // ova f-ja se izvršava posle uspešnog zahteva
             console.log(res);
             if(res.uloga === "admin") {
                 localStorage.setItem("id", res.id);
                 localStorage.setItem("role", "admin");
-                alert("Welcome " + korisnickoIme);
+                console.log("Uloga: " + localStorage.getItem("role"));
+                alert(res.error);
                 window.location.href = "admin.html";
             }
             if(res.uloga === "trener") {
                 localStorage.setItem("id", res.id);
                 localStorage.setItem("role", "trener");
-                alert("Welcome " + korisnickoIme);
+                alert(res.error);
+                console.log("Uloga: " + localStorage.getItem("role"));
                 window.location.href = "trener.html";
             }
             if(res.uloga === "clan") {
                 localStorage.setItem("id", res.id);
                 localStorage.setItem("role", "clan");
-                alert("Welcome " + korisnickoIme);
+                alert(res.error);
+                console.log("Uloga: " + localStorage.getItem("role"));
+                console.log(res.error);
                 window.location.href = "clan.html";
+            }
+            if(res.uloga === "odjavljen") {
+                localStorage.setItem("id", 0);
+                localStorage.setItem("role", "odjavljen");
+                alert(res.error);
             }
         },
         error: function () {                                        // ova f-ja se izvršava posle neuspešnog zahteva
