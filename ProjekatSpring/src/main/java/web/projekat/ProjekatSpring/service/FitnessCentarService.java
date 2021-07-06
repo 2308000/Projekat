@@ -47,10 +47,10 @@ public class FitnessCentarService {
 		FitnessCentar fitnessCentarToUpdate = this.fitnessCentarRepository.getOne(fitnessCentarDTO.getId());
 
         // Postavljanje novog radnog mesta
-		if(!fitnessCentarDTO.getNazivCentra().isEmpty()) fitnessCentarToUpdate.setNazivCentra(fitnessCentarDTO.getNazivCentra());
-        if(!fitnessCentarDTO.getAdresa().isEmpty()) fitnessCentarToUpdate.setAdresa(fitnessCentarDTO.getAdresa());
-        if(!fitnessCentarDTO.getBrojTelefonaCentra().isEmpty()) fitnessCentarToUpdate.setNazivCentra(fitnessCentarDTO.getBrojTelefonaCentra());
-        if(!fitnessCentarDTO.getEmailCentra().isEmpty()) fitnessCentarToUpdate.setEmailCentra(fitnessCentarDTO.getEmailCentra());
+		if(fitnessCentarDTO.getNazivCentra() != null && !fitnessCentarDTO.getNazivCentra().isEmpty()) fitnessCentarToUpdate.setNazivCentra(fitnessCentarDTO.getNazivCentra());
+        if(fitnessCentarDTO.getAdresa() != null && !fitnessCentarDTO.getAdresa().isEmpty()) fitnessCentarToUpdate.setAdresa(fitnessCentarDTO.getAdresa());
+        if(fitnessCentarDTO.getBrojTelefonaCentra() != null && !fitnessCentarDTO.getBrojTelefonaCentra().isEmpty()) fitnessCentarToUpdate.setBrojTelefonaCentra(fitnessCentarDTO.getBrojTelefonaCentra());
+        if(fitnessCentarDTO.getEmailCentra() != null && !fitnessCentarDTO.getEmailCentra().isEmpty()) fitnessCentarToUpdate.setEmailCentra(fitnessCentarDTO.getEmailCentra());
 
         // Čuvanje u bazi
         return this.fitnessCentarRepository.save(fitnessCentarToUpdate);

@@ -57,7 +57,10 @@ public class ClanController {
 	     
 	     Date compare = new Date();
 	     for (Termin termin : terminList) {
-	    	 if(!clan.getOdradjeniTermini().contains(termin) && termin.getPocetakTermina().after(compare)) {
+	    	 Trener trener = this.trenerService.findOne(termin.getTrener().getId());
+	    	 if(!clan.getOdradjeniTermini().contains(termin) && termin.getPocetakTermina().after(compare)
+	    			 && trener.getActive() && !trener.getObrisan()) {
+	    		 System.out.println("Trener: " + trener.getKorisnickoIme() + "; obrisan: " + trener.getObrisan());
 	    	 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
 	    		termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina(), termin.getTrening().getNazivTreninga(),
 	    		termin.getTrening().getOpis(), termin.getTrening().getTip());
@@ -84,10 +87,10 @@ public class ClanController {
 			 return new ResponseEntity<>(terminDTO, HttpStatus.OK);
 		 }
 		 
-		 if(termin.getSala().getKapacitet() > clan.getOdradjeniTermini().size()) { //ukoliko ima mjesta na terminu 
+		 if((termin.getSala().getKapacitet() - 1) > clan.getOdradjeniTermini().size()) { //ukoliko ima mjesta na terminu 
 			 odradjeniT.add(termin);							   //dodam termin u listu odradjenih
 			 clanoviOdr.add(clan);								   //i clana u clanove koji su odradili taj termin
-		 }
+		 
 		 //updateujem clana sa novom listom termina koje je odradio
 		 Clan clanToUpdate = new Clan(clan.getId(), clan.getKorisnickoIme(), clan.getIme(), clan.getPrezime(), clan.getPassword(),
 				 clan.getEmail(), clan.getDatumRodjenja(), clan.getTelefon(), clan.getUloga(), clan.getActive(), clan.getOcene(), odradjeniT,
@@ -101,6 +104,11 @@ public class ClanController {
 		 //napravim resposne
 		 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(), termin.getKrajTermina(), 
 				 termin.getTrajanjeTermina(), termin.getCenaTermina(), "ok", clan.getId(), clan.getKorisnickoIme(),
+				 clan.getIme(), clan.getPrezime());
+		 return new ResponseEntity<>(terminDTO, HttpStatus.OK);
+	 	}
+		 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(), termin.getKrajTermina(), 
+				 termin.getTrajanjeTermina(), termin.getCenaTermina(), "pun", clan.getId(), clan.getKorisnickoIme(),
 				 clan.getIme(), clan.getPrezime());
 		 return new ResponseEntity<>(terminDTO, HttpStatus.OK);
 	 }
@@ -125,8 +133,11 @@ public class ClanController {
 	     //System.out.println("Trenutni datum je " + compare);
 	     
 	     for (Termin termin : terminList) {
-	    	 if(clan.getOdradjeniTermini().contains(termin) && termin.getPocetakTermina().after(compare)) {
+	    	 Trener trener = this.trenerService.findOne(termin.getTrener().getId());
+	    	 if(clan.getOdradjeniTermini().contains(termin) && termin.getPocetakTermina().after(compare)
+	    			 && trener.getActive() && !trener.getObrisan()) {
 	    		 //System.out.println("Datum održavanja termina je " + termin.getPocetakTermina().after(compare));
+	    		 //System.out.println("Je li obrisan? " + trener.getObrisan());
 	    		 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
 	    				 termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina(), termin.getTrening().getNazivTreninga(),
 	    				 termin.getTrening().getOpis(), termin.getTrening().getTip());

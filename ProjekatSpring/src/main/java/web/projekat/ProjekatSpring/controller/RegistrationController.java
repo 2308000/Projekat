@@ -36,7 +36,7 @@ public class RegistrationController {
         List<FitnessCentar> listaCentara = this.registrationService.findAllCenters();     
         List<RegistrationDTO> registrationDTOS = new ArrayList<>();    
         
-        if(!registrationDTO.getZastita().equals("admin")) {
+        if(registrationDTO.getZastita() == null || !registrationDTO.getZastita().equals("admin")) {
         	return new ResponseEntity<>(registrationDTOS, HttpStatus.OK);
         }
         for (FitnessCentar centar : listaCentara) {

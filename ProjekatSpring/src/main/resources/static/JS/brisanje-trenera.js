@@ -70,3 +70,8 @@ $(document).on('click', '#delete', function () {
         }
     });
 });
+
+function logout() {
+    console.log("Logged out successfully!");
+    localStorage.setItem("role", "odjavljen");
+}

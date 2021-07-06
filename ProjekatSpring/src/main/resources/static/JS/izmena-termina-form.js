@@ -126,9 +126,11 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
                 alert("Pocetak termina upada u drugi termin");
             } else if(res.zastita == "kraj") {
                 alert("Kraj termina upada u drugi termin");
+            } else if(res.zastita == "oba") { 
+                alert("Termin preklapa drugi termin");
             } else { 
                 alert("Termin je uspesno izmenjen!");
-                //window.location.href = "termin.html";
+                window.location.href = "termin.html";
             }
         },
         error: function () {                                        // ova f-ja se izvršava posle neuspešnog zahteva

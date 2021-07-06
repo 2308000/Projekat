@@ -125,6 +125,7 @@ public class TerminService {
 		if(termin.getPocetakTermina() != null) { terminToUpdate.setPocetakTermina(termin.getPocetakTermina()); }
 		if(termin.getKrajTermina() != null) { terminToUpdate.setKrajTermina(termin.getKrajTermina()); }
 		if(termin.getTrajanjeTermina() != 0) { terminToUpdate.setTrajanjeTermina(termin.getTrajanjeTermina()); }
+		if(termin.getTrening() != null) { terminToUpdate.setTrening(termin.getTrening()); }
 		if(termin.getSala() != null) terminToUpdate.setSala(termin.getSala());
 		if(termin.getTrener() != null) terminToUpdate.setTrener(termin.getTrener());
 		if(termin.getClanoviOcenjenih() != null) terminToUpdate.setClanoviOcenjenih(termin.getClanoviOcenjenih());

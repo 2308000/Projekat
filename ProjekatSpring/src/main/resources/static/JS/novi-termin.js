@@ -110,6 +110,8 @@ $(document).on("submit", "form", function (event) {           // kada je submit-
                 alert("Pocetak termina upada u drugi termin");
             } else if(res.zastita == "kraj") {
                 alert("Kraj termina upada u drugi termin");
+            } else if(res.zastita == "oba") { 
+                alert("Termin preklapa drugi termin");
             } else { 
                 alert("Termin je uspesno dodan!");
                 window.location.href = "termin.html";

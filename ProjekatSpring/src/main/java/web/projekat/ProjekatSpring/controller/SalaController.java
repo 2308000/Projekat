@@ -65,10 +65,12 @@ public class SalaController {
         List<Sala> listaSala = this.salaService.findAllSale();
 
         List<SalaDTO> salaDTOS = new ArrayList<>();
-        
+        if(salaDTO.getZastita() == null) {
+        	return new ResponseEntity<>(salaDTOS, HttpStatus.OK);
+        }
         if(salaDTO.getZastita().equals("admin")) {
 	        for (Sala sala : listaSala) {
-	        	if(!sala.isObrisana()) {
+	        	if(!sala.isObrisana() && !sala.getFitnessCentar().isObrisan()) {
 	        		SalaDTO salaDTO2 = new SalaDTO(sala.getId(), sala.getKapacitet(), sala.getOznakaSale(), sala.isObrisana(), sala.getFitnessCentar().getId(), "admin"); 
 	        		salaDTOS.add(salaDTO2);
 	        	} /*SalaDTO(Integer kapacitet, String oznakaSale, boolean obrisana, Long centarID)*/

@@ -88,9 +88,9 @@ $(document).on('click', '#prijava', function () {            // kada je button (
             if(res.zastita === "denied") {
                 alert("Morate biti član da biste se prijavili termin!");
             } else if(res.zastita === "ok") {
-                alert("Uspješno ste se prijavila na termin!");
-            } else {
-                alert("Prijava neuspješna!");
+                alert("Uspješno ste se prijavili na termin!");
+            } else if(res.zastita === "pun") {
+                alert("Prijava neuspješna, termin je popunjen!");
             }
         },
         error: function (res) {                                // ova f-ja se izvršava posle neuspešnog zahteva

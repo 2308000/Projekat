@@ -42,10 +42,13 @@ public class TerminController {
 	     List<TerminDTO> terminDTOS = new ArrayList<>();
 
 	     for (Termin termin : terminList) {
-	    	 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
-	    		termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina(), termin.getTrening().getNazivTreninga(),
-	    		termin.getTrening().getOpis(), termin.getTrening().getTip());
-	    	 	terminDTOS.add(terminDTO);
+	    	 Trener trener = this.trenerService.findOne(termin.getTrener().getId());
+	    	 if(trener.getActive() && !trener.getObrisan()) {
+		    	 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
+		    		termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina(), termin.getTrening().getNazivTreninga(),
+		    		termin.getTrening().getOpis(), termin.getTrening().getTip());
+		    	 	terminDTOS.add(terminDTO);
+	    	 }
 	     }
 
 	     return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
@@ -63,10 +66,13 @@ public class TerminController {
 	     }
 	     
 	     for (Termin termin : terminList) {
-	    	 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
-	    		termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina(), termin.getTrening().getNazivTreninga(),
-	    		termin.getTrening().getOpis(), termin.getTrening().getTip());
-	    	 	terminDTOS.add(terminDTO);
+	    	 Trener trener = this.trenerService.findOne(termin.getTrener().getId());
+	    	 if(trener.getActive() && !trener.getObrisan()) {
+		    	 TerminDTO terminDTO = new TerminDTO(termin.getId(), termin.getPocetakTermina(),
+		    		termin.getKrajTermina(), termin.getTrajanjeTermina(), termin.getCenaTermina(), termin.getTrening().getNazivTreninga(),
+		    		termin.getTrening().getOpis(), termin.getTrening().getTip());
+		    	 	terminDTOS.add(terminDTO);
+	    	 }
 	     }
 
 	     return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
@@ -127,8 +133,10 @@ public class TerminController {
 	        	return new ResponseEntity<>(terminDTOS, HttpStatus.OK);
 	        }
 	        for(Sala sala : listaSala) {
-	        	TerminDTO terminDTO2 = new TerminDTO(sala.getId()); 
-	        	terminDTOS.add(terminDTO2); 
+	        	if(!sala.isObrisana()) {
+		        	TerminDTO terminDTO2 = new TerminDTO(sala.getId()); 
+		        	terminDTOS.add(terminDTO2); 
+	        	}
 	        }
 	        	
 	        return new ResponseEntity<>(terminDTOS, HttpStatus.OK);	
@@ -175,14 +183,19 @@ public class TerminController {
 	        		//System.out.println("stigao u uslov");
 	        		Set<Termin> termini = s.getTermini();
 	        		for(Termin termin2 : termini) {
-	        			if(terminDTO2.getPocetakTermina().after(termin2.getPocetakTermina()) && terminDTO2.getPocetakTermina().before(termin2.getKrajTermina())) {
+	        			if(terminDTO2.getPocetakTermina().equals(termin2.getPocetakTermina()) || (terminDTO2.getPocetakTermina().after(termin2.getPocetakTermina()) && terminDTO2.getPocetakTermina().before(termin2.getKrajTermina()))) {
 	        				//System.out.println("stigao u uslov za pocetak");
 	        				TerminDTO newTerminDTO = new TerminDTO(Long.valueOf(0), trener.getDatumRodjenja(), trener.getDatumRodjenja(), 0, 0, "", "", "", "pocetak", Long.valueOf(0), Long.valueOf(0), Long.valueOf(0));
 	        				return new ResponseEntity<>(newTerminDTO, HttpStatus.CREATED);
 	        			}
-	        			if(terminDTO2.getKrajTermina().after(termin2.getPocetakTermina()) && terminDTO2.getKrajTermina().before(termin2.getKrajTermina())) {
-	        				System.out.println("stigao u uslov za kraj");
+	        			if(terminDTO2.getKrajTermina().equals(termin2.getKrajTermina()) || (terminDTO2.getKrajTermina().after(termin2.getPocetakTermina()) && terminDTO2.getKrajTermina().before(termin2.getKrajTermina()))) {
+	        				//System.out.println("stigao u uslov za kraj");
 	        				TerminDTO newTerminDTO = new TerminDTO(Long.valueOf(0), trener.getDatumRodjenja(), trener.getDatumRodjenja(), 0, 0, "", "", "", "kraj", Long.valueOf(0), Long.valueOf(0), Long.valueOf(0));
+	        				return new ResponseEntity<>(newTerminDTO, HttpStatus.CREATED);	        				
+	        			}
+	        			if(terminDTO2.getPocetakTermina().before(termin2.getPocetakTermina()) && terminDTO2.getKrajTermina().after(termin2.getKrajTermina())) {
+	        				//System.out.println("stigao u uslov za kraj");
+	        				TerminDTO newTerminDTO = new TerminDTO(Long.valueOf(0), trener.getDatumRodjenja(), trener.getDatumRodjenja(), 0, 0, "", "", "", "oba", Long.valueOf(0), Long.valueOf(0), Long.valueOf(0));
 	        				return new ResponseEntity<>(newTerminDTO, HttpStatus.CREATED);	        				
 	        			}
 	        		}
@@ -201,6 +214,7 @@ public class TerminController {
     public ResponseEntity<TerminDTO> updateTermin(@RequestBody TerminDTO terminDTO) throws Exception {
 		Sala sala = this.salaService.findById(terminDTO.getSalaID());
 		Trening trening = this.terminService.findTrainingByName(terminDTO.getNazivTreninga());
+		
 		/*List<Sala> sale = this.salaService.findAllSale();
 		for(Sala sala : sale) {
 			if(sala.getId() == termin2.getSala().getId()) {
@@ -227,13 +241,18 @@ public class TerminController {
         		Set<Termin> termini = s.getTermini();
         		for(Termin termin3 : termini) {
         			if(terminDTO.getPocetakTermina() == null || terminDTO.getKrajTermina() == null) continue;
-        			if(terminDTO.getPocetakTermina().after(termin3.getPocetakTermina()) && terminDTO.getPocetakTermina().before(termin3.getKrajTermina())) {
+        			if(terminDTO.getPocetakTermina().equals(termin3.getPocetakTermina()) || (terminDTO.getPocetakTermina().after(termin3.getPocetakTermina()) && terminDTO.getPocetakTermina().before(termin3.getKrajTermina()))) {
         				//System.out.println("stigao u uslov za pocetak");
         				TerminDTO newTerminDTO = new TerminDTO(Long.valueOf(0), trener.getDatumRodjenja(), trener.getDatumRodjenja(), 0, 0, "", "", "", "pocetak", Long.valueOf(0), Long.valueOf(0), Long.valueOf(0));
         				return new ResponseEntity<>(newTerminDTO, HttpStatus.CREATED);
         			}
-        			if(terminDTO.getKrajTermina().after(termin3.getPocetakTermina()) && terminDTO.getKrajTermina().before(termin3.getKrajTermina())) {
+        			if(terminDTO.getKrajTermina().equals(termin3.getKrajTermina()) || (terminDTO.getKrajTermina().after(termin3.getPocetakTermina()) && terminDTO.getKrajTermina().before(termin3.getKrajTermina()))) {
         				TerminDTO newTerminDTO = new TerminDTO(Long.valueOf(0), trener.getDatumRodjenja(), trener.getDatumRodjenja(), 0, 0, "", "", "", "kraj", Long.valueOf(0), Long.valueOf(0), Long.valueOf(0));
+        				return new ResponseEntity<>(newTerminDTO, HttpStatus.CREATED);	        				
+        			}
+        			if(terminDTO.getPocetakTermina().before(termin3.getPocetakTermina()) && terminDTO.getKrajTermina().after(termin3.getKrajTermina())) {
+        				//System.out.println("stigao u uslov za kraj");
+        				TerminDTO newTerminDTO = new TerminDTO(Long.valueOf(0), trener.getDatumRodjenja(), trener.getDatumRodjenja(), 0, 0, "", "", "", "oba", Long.valueOf(0), Long.valueOf(0), Long.valueOf(0));
         				return new ResponseEntity<>(newTerminDTO, HttpStatus.CREATED);	        				
         			}
         		}
